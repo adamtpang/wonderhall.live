@@ -14,23 +14,22 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://wonderhall.live"),
-  title: "Wonderhall — live music at Network School",
+  title: "Wonderhall · live music at Network School",
   description:
-    "Bimonthly live music series. Adam Pangelinan & Maanasa. Network School, Langkawi.",
+    "A live music night at Network School, Forest City. We came to bring beauty back.",
   keywords: [
     "Wonderhall",
     "live music",
     "Network School",
-    "Langkawi",
-    "Adam Pangelinan",
-    "Maanasa",
+    "Forest City",
+    "Malaysia",
     "concert",
     "indie",
   ],
   openGraph: {
-    title: "Wonderhall — live music at Network School",
+    title: "Wonderhall · live music at Network School",
     description:
-      "Bimonthly live music series. Adam Pangelinan & Maanasa. Network School, Langkawi.",
+      "A live music night at Network School, Forest City. We came to bring beauty back.",
     url: "https://wonderhall.live",
     siteName: "Wonderhall",
     locale: "en_US",
@@ -38,9 +37,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Wonderhall — live music at Network School",
+    title: "Wonderhall · live music at Network School",
     description:
-      "Bimonthly live music series. Adam Pangelinan & Maanasa. Network School, Langkawi.",
+      "A live music night at Network School, Forest City. We came to bring beauty back.",
     creator: "@adamtpang",
   },
   robots: {
