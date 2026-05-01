@@ -1,170 +1,139 @@
-// Wonderhall single-page landing.
+import Image from "next/image";
+import Countdown from "./countdown";
+import gallery from "./gallery-data.json";
+import Stars from "./stars";
 
 const YOUTUBE_VIDEO_ID = "My6bShyEurI";
-const NS_URL = "https://ns.com";
+const LUMA_EVENT_ID = "47q03ybr";
 
 export default function Home() {
   return (
-    <main className="flex-1 w-full">
-      {/* ============================ HERO ============================ */}
-      <section
-        id="hero"
-        className="relative min-h-screen w-full flex flex-col items-center justify-center px-6 py-12 bg-black overflow-hidden"
-      >
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-0 opacity-50"
-          style={{
-            background:
-              "radial-gradient(60% 50% at 50% 30%, rgba(251,191,36,0.18) 0%, rgba(249,115,22,0.08) 40%, rgba(0,0,0,0) 70%)",
-          }}
-        />
+    <>
+      <Stars />
 
-        <div className="relative z-10 w-full max-w-5xl flex flex-col items-center">
-          <div className="fade-in-up flex items-baseline gap-3 mb-6 sm:mb-8">
-            <h1
-              className="font-black uppercase tracking-tight text-white"
+      <main className="relative z-10 flex-1 w-full">
+        {/* TITLE */}
+        <section className="w-full px-4 sm:px-6 pt-10 pb-6 sm:pt-14 sm:pb-8">
+          <h1
+            className="fade-in-up font-black uppercase bg-gradient-to-r from-yellow-400 via-orange-400 to-orange-500 bg-clip-text text-transparent leading-none text-center whitespace-nowrap"
+            style={{
+              fontSize: "clamp(2.5rem, 13.5vw, 18rem)",
+              letterSpacing: "-0.06em",
+            }}
+          >
+            Wonderhall
+          </h1>
+        </section>
+
+        {/* ABOUT */}
+        <section className="w-full px-6 pb-12 sm:pb-16">
+          <div className="w-full max-w-2xl mx-auto text-center">
+            <p className="fade-in-up delay-1 text-lg sm:text-xl leading-relaxed text-white/80">
+              Wonderhall is a live music night at Network School in Forest
+              City, Malaysia. Every even month, performers from across the
+              campus take the Level 2 ballroom for one ninety-minute set.
+            </p>
+          </div>
+        </section>
+
+        {/* PHOTOS */}
+        <section className="w-full px-4 sm:px-6 pb-12 sm:pb-16">
+          <div className="w-full max-w-6xl mx-auto columns-2 md:columns-3 lg:columns-4 gap-3 [column-fill:_balance]">
+            {gallery.map((photo, i) => (
+              <div
+                key={photo.src}
+                className="mb-3 break-inside-avoid overflow-hidden rounded-sm"
+              >
+                <Image
+                  src={photo.src}
+                  width={photo.width}
+                  height={photo.height}
+                  alt={`Wonderhall I — moment ${i + 1}`}
+                  sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                  className="w-full h-auto block"
+                  priority={i < 4}
+                  loading={i < 4 ? "eager" : "lazy"}
+                />
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* VIDEO */}
+        <section className="w-full px-4 sm:px-6 pb-16 sm:pb-20">
+          <div className="w-full max-w-5xl mx-auto">
+            <div
+              className="w-full aspect-video overflow-hidden border border-white/10 bg-black rounded-md"
               style={{
-                fontSize: "clamp(1.75rem, 4vw, 2.75rem)",
-                letterSpacing: "-0.03em",
+                boxShadow:
+                  "0 20px 80px -20px rgba(249,115,22,0.5), 0 0 120px -40px rgba(251,191,36,0.3)",
               }}
             >
-              Wonderhall
-            </h1>
-            <span className="font-mono text-xs sm:text-sm tracking-[0.3em] text-yellow-400">
-              I
-            </span>
+              <iframe
+                src={`https://www.youtube-nocookie.com/embed/${YOUTUBE_VIDEO_ID}?autoplay=1&mute=1&playsinline=1&rel=0`}
+                title="Wonderhall I"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+                className="w-full h-full"
+              />
+            </div>
           </div>
+        </section>
 
-          <div
-            className="fade-in-up delay-1 w-full aspect-video overflow-hidden border border-white/10 bg-black"
-            style={{
-              boxShadow:
-                "0 0 80px rgba(251,191,36,0.12), 0 0 200px rgba(249,115,22,0.05)",
-            }}
-          >
-            <iframe
-              src={`https://www.youtube-nocookie.com/embed/${YOUTUBE_VIDEO_ID}?rel=0`}
-              title="Wonderhall I · Network School, April 2026"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowFullScreen
-              className="w-full h-full"
-            />
+        {/* NEXT EVENT */}
+        <section className="w-full px-6 pb-20 sm:pb-24">
+          <div className="w-full max-w-md mx-auto text-center">
+            <p className="text-[10px] sm:text-xs uppercase tracking-[0.4em] text-yellow-400 font-semibold mb-3">
+              Next Show
+            </p>
+            <h2
+              className="font-black uppercase tracking-tight leading-none bg-gradient-to-r from-yellow-400 via-orange-400 to-orange-500 bg-clip-text text-transparent mb-4"
+              style={{
+                fontSize: "clamp(2rem, 6vw, 3.5rem)",
+                letterSpacing: "-0.04em",
+              }}
+            >
+              Wonderhall II
+            </h2>
+            <p className="text-sm uppercase tracking-[0.25em] text-white/60 mb-8">
+              June 2026 · Network School
+            </p>
+
+            <div className="mb-10">
+              <Countdown />
+            </div>
+
+            <div
+              className="overflow-hidden rounded-lg"
+              style={{
+                boxShadow:
+                  "0 20px 80px -20px rgba(249,115,22,0.5), 0 0 120px -40px rgba(251,191,36,0.3)",
+              }}
+            >
+              <iframe
+                src={`https://luma.com/embed/event/${LUMA_EVENT_ID}/simple`}
+                width="100%"
+                height="600"
+                title="Wonderhall II RSVP"
+                loading="lazy"
+                allowFullScreen
+                aria-hidden="false"
+                tabIndex={0}
+                className="w-full bg-white"
+                style={{ border: "1px solid rgba(0,0,0,0.08)" }}
+              />
+            </div>
           </div>
+        </section>
 
-          <p className="fade-in-up delay-2 mt-6 text-white/50 text-[10px] sm:text-xs uppercase tracking-[0.35em]">
-            Vol. I · April 2026 ·{" "}
-            <a
-              href={NS_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-yellow-400 transition-colors"
-            >
-              Network School
-            </a>
-          </p>
-        </div>
-
-        <a
-          href="#story"
-          aria-label="Scroll to story"
-          className="fade-in delay-3 absolute bottom-6 sm:bottom-8 left-1/2 -translate-x-1/2 text-white/40 hover:text-yellow-400 text-[10px] uppercase tracking-[0.4em] transition-colors"
-        >
-          ↓ Story
-        </a>
-      </section>
-
-      {/* ============================ STORY ============================ */}
-      <section
-        id="story"
-        className="relative w-full bg-black border-t border-white/10 px-6 py-32 sm:py-48 overflow-hidden"
-      >
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-0 opacity-25"
-          style={{
-            background:
-              "radial-gradient(45% 50% at 75% 35%, rgba(249,115,22,0.22) 0%, rgba(0,0,0,0) 70%)",
-          }}
-        />
-        <div className="relative max-w-3xl mx-auto space-y-10 text-lg sm:text-xl text-white/80 leading-relaxed">
-          <p>
-            <a
-              href={NS_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-white hover:text-yellow-400 transition-colors"
-            >
-              Network School
-            </a>{" "}
-            is brilliant. Forest City is beautiful. Both, at certain hours,
-            can also feel a little sterile. Glass towers, empty walkways, the
-            hum of work, work, work.
-          </p>
-          <p>
-            So we made a place to remember what the body already knows: that we
-            were built for the kind of awe you feel at a great show, in a quiet
-            church, or under a full sky. The kind that resets you.
-          </p>
-          <p
-            className="font-black uppercase tracking-tight leading-[0.9] pt-6 bg-gradient-to-r from-yellow-300 via-orange-400 to-orange-500 bg-clip-text text-transparent"
-            style={{
-              fontSize: "clamp(2rem, 6vw, 4.5rem)",
-              letterSpacing: "-0.03em",
-            }}
-          >
-            We came to bring beauty back.
-          </p>
-        </div>
-      </section>
-
-      {/* ============================ NEXT ============================ */}
-      <section
-        id="next"
-        className="relative w-full bg-black border-t border-white/10 px-6 py-32 sm:py-40 overflow-hidden"
-      >
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-0 opacity-30"
-          style={{
-            background:
-              "radial-gradient(45% 40% at 25% 50%, rgba(251,191,36,0.18) 0%, rgba(0,0,0,0) 70%)",
-          }}
-        />
-        <div className="relative max-w-3xl mx-auto text-center">
-          <p className="text-yellow-400 uppercase tracking-[0.4em] text-[10px] sm:text-xs font-semibold">
-            Next
-          </p>
-          <h2
-            className="mt-5 font-black uppercase tracking-tight text-white"
-            style={{
-              fontSize: "clamp(2.5rem, 9vw, 6.5rem)",
-              letterSpacing: "-0.04em",
-            }}
-          >
-            Wonderhall II
-          </h2>
-          <p className="mt-6 text-white/60 text-sm sm:text-base uppercase tracking-[0.3em]">
-            June 2026 ·{" "}
-            <a
-              href={NS_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-yellow-400 transition-colors"
-            >
-              Network School
-            </a>
-          </p>
-        </div>
-      </section>
-
-      {/* ============================ FOOTER ============================ */}
-      <footer className="w-full bg-black border-t border-white/10 px-6 py-10">
-        <div className="max-w-5xl mx-auto flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-[10px] uppercase tracking-[0.4em] text-white/40">
-          <p>© 2026 Wonderhall</p>
-          <p>Forest City, Malaysia</p>
-        </div>
-      </footer>
-    </main>
+        {/* FOOTER */}
+        <footer className="w-full px-6 py-8 border-t border-white/5">
+          <div className="max-w-5xl mx-auto flex items-center justify-between gap-3 text-[10px] uppercase tracking-[0.4em] text-white/40">
+            <p>© 2026 Wonderhall</p>
+            <p>Forest City, Malaysia</p>
+          </div>
+        </footer>
+      </main>
+    </>
   );
 }
