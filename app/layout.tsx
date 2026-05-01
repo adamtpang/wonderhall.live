@@ -14,9 +14,9 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://wonderhall.live"),
-  title: "Wonderhall · live music at Network School",
+  title: "Wonderhall",
   description:
-    "A live music night at Network School, Forest City. We came to bring beauty back.",
+    "A live music night at Network School in Forest City, Malaysia. Every even month.",
   keywords: [
     "Wonderhall",
     "live music",
@@ -24,12 +24,11 @@ export const metadata: Metadata = {
     "Forest City",
     "Malaysia",
     "concert",
-    "indie",
   ],
   openGraph: {
-    title: "Wonderhall · live music at Network School",
+    title: "Wonderhall",
     description:
-      "A live music night at Network School, Forest City. We came to bring beauty back.",
+      "A live music night at Network School in Forest City, Malaysia. Every even month.",
     url: "https://wonderhall.live",
     siteName: "Wonderhall",
     locale: "en_US",
@@ -37,9 +36,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Wonderhall · live music at Network School",
+    title: "Wonderhall",
     description:
-      "A live music night at Network School, Forest City. We came to bring beauty back.",
+      "A live music night at Network School in Forest City, Malaysia. Every even month.",
     creator: "@adamtpang",
   },
   robots: {
@@ -56,11 +55,15 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`dark ${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-black text-white">
-        {children}
-      </body>
+      <head>
+        <link rel="preconnect" href="https://www.youtube-nocookie.com" />
+        <link rel="preconnect" href="https://www.youtube.com" />
+        <link rel="preconnect" href="https://i.ytimg.com" />
+        <link rel="preconnect" href="https://luma.com" />
+      </head>
+      <body className="min-h-full flex flex-col">{children}</body>
     </html>
   );
 }
