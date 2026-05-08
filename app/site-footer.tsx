@@ -1,0 +1,16 @@
+"use client";
+
+import { usePathname } from "next/navigation";
+
+export default function SiteFooter() {
+  const pathname = usePathname();
+  if (pathname?.startsWith("/small")) return null;
+
+  return (
+    <footer style={{ padding: "1.5rem 1rem", textAlign: "center", fontSize: "0.75rem", opacity: 0.6, marginTop: "auto" }}>
+      Built by <a href="https://adampang.com" style={{ textDecoration: "underline" }}>Adam Pangelinan</a>
+      {" · "}<a href="https://anchormarianas.com" style={{ textDecoration: "underline" }}>Anchor Marianas LLC</a>
+      {" · "}<a href="https://sellsniper.com" style={{ textDecoration: "underline" }}>More projects</a>
+    </footer>
+  );
+}
