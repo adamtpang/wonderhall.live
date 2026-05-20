@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 
 // Wonderhall II — mid-June 2026, 7:30pm Malaysia time (UTC+8).
-const TARGET_MS = new Date("2026-06-15T19:30:00+08:00").getTime();
+const DEFAULT_TARGET = "2026-06-15T19:30:00+08:00";
 
 type TimeLeft = {
   days: number;
@@ -12,8 +12,8 @@ type TimeLeft = {
   seconds: number;
 };
 
-function compute(): TimeLeft {
-  const diff = Math.max(0, TARGET_MS - Date.now());
+function compute(targetMs: number): TimeLeft {
+  const diff = Math.max(0, targetMs - Date.now());
   return {
     days: Math.floor(diff / 86_400_000),
     hours: Math.floor((diff / 3_600_000) % 24),
@@ -22,14 +22,15 @@ function compute(): TimeLeft {
   };
 }
 
-export default function Countdown() {
+export default function Countdown({ target = DEFAULT_TARGET }: { target?: string } = {}) {
+  const targetMs = new Date(target).getTime();
   const [t, setT] = useState<TimeLeft | null>(null);
 
   useEffect(() => {
-    setT(compute());
-    const id = setInterval(() => setT(compute()), 1000);
+    setT(compute(targetMs));
+    const id = setInterval(() => setT(compute(targetMs)), 1000);
     return () => clearInterval(id);
-  }, []);
+  }, [targetMs]);
 
   const items: Array<{ value: number | undefined; label: string }> = [
     { value: t?.days, label: "days" },
