@@ -2,7 +2,7 @@ import { ImageResponse } from "next/og";
 
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
-export const alt = "Wondersmall — secret tiny desk concert at Network School";
+export const alt = "wondersmall, a tiny desk concert at Network School";
 
 export default async function Image() {
   return new ImageResponse(
@@ -15,37 +15,40 @@ export default async function Image() {
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
-          background:
-            "radial-gradient(70% 50% at 50% 100%, rgba(249,115,22,0.4) 0%, rgba(253,224,71,0.12) 35%, rgba(0,0,0,1) 75%)",
-          backgroundColor: "#000000",
-          color: "#ffffff",
+          backgroundColor: "#FFFFFD",
           fontFamily: "sans-serif",
           padding: 80,
         }}
       >
+        {/* 5-color rule */}
+        <div style={{ display: "flex", width: "100%", height: 16, marginBottom: 56 }}>
+          <div style={{ flex: 1, background: "#FFB81E" }} />
+          <div style={{ flex: 1, background: "#FE5722" }} />
+          <div style={{ flex: 1, background: "#FC769A" }} />
+        </div>
         <div
           style={{
-            fontSize: 180,
-            fontWeight: 300,
-            letterSpacing: -6,
+            display: "flex",
+            fontSize: 150,
+            fontWeight: 900,
+            letterSpacing: -4,
             lineHeight: 1,
-            backgroundImage: "linear-gradient(90deg, #fde047, #fb923c)",
-            backgroundClip: "text",
-            color: "transparent",
+            color: "#0F0F0D",
           }}
         >
           wondersmall
         </div>
         <div
           style={{
-            fontSize: 24,
-            color: "rgba(255,255,255,0.7)",
-            marginTop: 40,
+            display: "flex",
+            fontSize: 26,
+            color: "#6B5647",
+            marginTop: 44,
             letterSpacing: 8,
             textTransform: "uppercase",
           }}
         >
-          Tiny Desk · Invitation Only
+          Tiny Desk · Invite Only
         </div>
       </div>
     ),

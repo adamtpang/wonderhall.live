@@ -2,7 +2,10 @@ import { ImageResponse } from "next/og";
 
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
-export const alt = "Wonderhall — live music at Network School, Forest City";
+export const alt = "Wonderhall, live music at Network School, Forest City";
+
+// Wordmark cycle: Orange, Amber, Pink, Ink.
+const CYCLE = ["#FE5722", "#FFB81E", "#FC769A", "#0F0F0D"];
 
 export default async function Image() {
   return new ImageResponse(
@@ -15,35 +18,33 @@ export default async function Image() {
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
-          background:
-            "radial-gradient(80% 60% at 50% 100%, rgba(249,115,22,0.55) 0%, rgba(253,224,71,0.18) 35%, rgba(0,0,0,1) 75%)",
-          backgroundColor: "#000000",
-          color: "#ffffff",
+          backgroundColor: "#FFFFFD",
           fontFamily: "sans-serif",
           padding: 80,
         }}
       >
-        <div
-          style={{
-            fontSize: 240,
-            fontWeight: 900,
-            letterSpacing: -8,
-            lineHeight: 1,
-            backgroundImage: "linear-gradient(90deg, #facc15, #f97316)",
-            backgroundClip: "text",
-            color: "transparent",
-            textTransform: "uppercase",
-          }}
-        >
-          Wonderhall
+        {/* 5-color rule */}
+        <div style={{ display: "flex", width: "100%", height: 16, marginBottom: 56 }}>
+          <div style={{ flex: 1, background: "#FFB81E" }} />
+          <div style={{ flex: 1, background: "#FE5722" }} />
+          <div style={{ flex: 1, background: "#FC769A" }} />
         </div>
         <div
           style={{
-            fontSize: 28,
-            color: "rgba(255,255,255,0.75)",
-            marginTop: 30,
+            display: "flex",
+            fontSize: 146,
+            fontWeight: 900,
+            letterSpacing: -4,
+            lineHeight: 1,
           }}
         >
+          {"WONDERHALL".split("").map((c, i) => (
+            <span key={i} style={{ color: CYCLE[i % 4] }}>
+              {c}
+            </span>
+          ))}
+        </div>
+        <div style={{ display: "flex", fontSize: 28, color: "#6B5647", marginTop: 44 }}>
           Live music at Network School · Forest City
         </div>
       </div>

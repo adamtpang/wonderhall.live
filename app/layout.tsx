@@ -1,24 +1,27 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Archivo, Archivo_Black } from "next/font/google";
 import "./globals.css";
 import { PostHogProvider } from "./providers";
 import SiteFooter from "./site-footer";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+// Archivo (multi-weight) for text; Archivo Black (single weight) for display.
+const archivo = Archivo({
+  variable: "--font-archivo",
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800", "900"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const archivoBlack = Archivo_Black({
+  variable: "--font-archivo-black",
   subsets: ["latin"],
+  weight: "400",
 });
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://wonderhall.live"),
   title: "Wonderhall",
   description:
-    "A live music night at Network School in Forest City, Malaysia. Every even month.",
+    "A live music night at Network School in Forest City, Malaysia. Next show: Wonderhall III, Sunday 23 August 2026.",
   keywords: [
     "Wonderhall",
     "live music",
@@ -30,7 +33,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Wonderhall",
     description:
-      "A live music night at Network School in Forest City, Malaysia. Every even month.",
+      "A live music night at Network School in Forest City, Malaysia. Next show: Wonderhall III, Sunday 23 August 2026.",
     url: "https://wonderhall.live",
     siteName: "Wonderhall",
     locale: "en_US",
@@ -40,7 +43,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Wonderhall",
     description:
-      "A live music night at Network School in Forest City, Malaysia. Every even month.",
+      "A live music night at Network School in Forest City, Malaysia. Next show: Wonderhall III, Sunday 23 August 2026.",
     creator: "@adamtpang",
   },
   robots: {
@@ -57,7 +60,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`dark ${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${archivo.variable} ${archivoBlack.variable} h-full antialiased`}
     >
       <head>
         <link rel="preconnect" href="https://www.youtube-nocookie.com" />
