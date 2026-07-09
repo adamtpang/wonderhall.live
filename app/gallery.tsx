@@ -1,6 +1,12 @@
 "use client";
 
-import { motion } from "framer-motion";
+import {
+  motion,
+  useAnimationFrame,
+  useMotionValue,
+  useReducedMotion,
+  useTransform,
+} from "framer-motion";
 import Image from "next/image";
 import { useEffect, useMemo, useState } from "react";
 
@@ -22,6 +28,11 @@ export default function Gallery({ photos }: { photos: Photo[] }) {
   // Wait for client mount, then shuffle. Server renders an empty placeholder
   // of the same height so we don't get hydration mismatch or layout shift.
   const [shuffled, setShuffled] = useState<Photo[] | null>(null);
+  const [paused, setPaused] = useState(false);
+  // WCAG 2.2.2: honor the OS reduced-motion setting (static columns, no
+  // toggle) and give everyone else a pause/play control.
+  const reducedMotion = useReducedMotion();
+  const animated = !reducedMotion;
 
   useEffect(() => {
     setShuffled(shuffle(photos));
@@ -45,16 +56,33 @@ export default function Gallery({ photos }: { photos: Photo[] }) {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-        className="w-full max-w-6xl mx-auto"
+        className="relative w-full max-w-6xl mx-auto"
       >
         <div
           className="grid grid-cols-3 gap-3 h-[75vh] overflow-hidden"
           style={{ maskImage: MASK, WebkitMaskImage: MASK }}
         >
           {columns.map((col, i) => (
-            <Column key={i} photos={col} duration={55 + i * 12} />
+            <Column
+              key={i}
+              photos={col}
+              duration={55 + i * 12}
+              scrolling={animated && !paused}
+              loop={animated}
+            />
           ))}
         </div>
+        {animated && (
+          <button
+            type="button"
+            onClick={() => setPaused((p) => !p)}
+            aria-pressed={paused}
+            aria-label={paused ? "Play the photo reel" : "Pause the photo reel"}
+            className="wh-gallery-toggle absolute bottom-3 right-3 z-10"
+          >
+            {paused ? "Play" : "Pause"}
+          </button>
+        )}
       </motion.div>
     </section>
   );
@@ -63,24 +91,34 @@ export default function Gallery({ photos }: { photos: Photo[] }) {
 function Column({
   photos,
   duration,
+  scrolling,
+  loop,
 }: {
   photos: Photo[];
   duration: number;
+  scrolling: boolean;
+  loop: boolean;
 }) {
-  // Duplicate the list so y: 0 -> -50% gives a seamless loop.
-  const items = useMemo(() => [...photos, ...photos], [photos]);
+  // Duplicate the list so 0% -> -50% gives a seamless loop. Under reduced
+  // motion the column never moves, so a single set is enough.
+  const items = useMemo(
+    () => (loop ? [...photos, ...photos] : photos),
+    [photos, loop]
+  );
+
+  // Drive the loop by hand (instead of animate={{ y }}) so pausing freezes
+  // the columns in place and play resumes from the same spot.
+  const progress = useMotionValue(0);
+  const y = useTransform(progress, (p) => `${-50 * p}%`);
+
+  useAnimationFrame((_, delta) => {
+    if (!scrolling) return;
+    progress.set((progress.get() + delta / (duration * 1000)) % 1);
+  });
 
   return (
     <div className="relative">
-      <motion.div
-        animate={{ y: ["0%", "-50%"] }}
-        transition={{
-          duration,
-          repeat: Infinity,
-          ease: "linear",
-        }}
-        className="flex flex-col gap-3"
-      >
+      <motion.div style={{ y }} className="flex flex-col gap-3">
         {items.map((photo, j) => (
           <div
             key={`${photo.src}-${j}`}

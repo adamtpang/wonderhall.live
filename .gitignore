@@ -49,3 +49,6 @@ next-env.d.ts
 .claude/worktrees/
 .claude/settings.local.json
 .claude/settings.local.json*
+
+# Claude/Codex chat-continuation index (contains transcript summaries)
+CODEX_CONTINUE_FROM_CLAUDE.md

@@ -2,8 +2,8 @@
 
 import { useEffect, useState } from "react";
 
-// Wonderhall II — mid-June 2026, 7:30pm Malaysia time (UTC+8).
-const DEFAULT_TARGET = "2026-06-15T19:30:00+08:00";
+// Wonderhall III, Sun 23 August 2026, 7:30pm Malaysia time (UTC+8).
+const DEFAULT_TARGET = "2026-08-23T19:30:00+08:00";
 
 type TimeLeft = {
   days: number;
@@ -22,6 +22,15 @@ function compute(targetMs: number): TimeLeft {
   };
 }
 
+// Flat color blocks, rotating the accent trio + espresso (amber/pink carry ink
+// text for contrast). Mirrors the design system's signature component.
+const BLOCKS = [
+  { label: "Days", bg: "var(--orange)", fg: "var(--paper)" },
+  { label: "Hours", bg: "var(--amber)", fg: "var(--ink)" },
+  { label: "Minutes", bg: "var(--pink)", fg: "var(--ink)" },
+  { label: "Seconds", bg: "var(--espresso)", fg: "var(--paper)" },
+] as const;
+
 export default function Countdown({ target = DEFAULT_TARGET }: { target?: string } = {}) {
   const targetMs = new Date(target).getTime();
   const [t, setT] = useState<TimeLeft | null>(null);
@@ -32,35 +41,29 @@ export default function Countdown({ target = DEFAULT_TARGET }: { target?: string
     return () => clearInterval(id);
   }, [targetMs]);
 
-  const items: Array<{ value: number | undefined; label: string }> = [
-    { value: t?.days, label: "days" },
-    { value: t?.hours, label: "hours" },
-    { value: t?.minutes, label: "minutes" },
-    { value: t?.seconds, label: "seconds" },
-  ];
+  const values = [t?.days, t?.hours, t?.minutes, t?.seconds];
 
   return (
-    <div className="grid grid-cols-4 gap-2 sm:gap-4">
-      {items.map((it) => (
-        <div key={it.label} className="text-center">
+    <div className="grid grid-cols-4 gap-3 sm:gap-4">
+      {BLOCKS.map((block, i) => {
+        const value = values[i];
+        const display =
+          value === undefined
+            ? "--"
+            : block.label === "Days"
+            ? String(value)
+            : String(value).padStart(2, "0");
+        return (
           <div
-            className="font-black tracking-tight bg-gradient-to-b from-yellow-400 to-orange-500 bg-clip-text text-transparent leading-none tabular-nums"
-            style={{
-              fontSize: "clamp(1.75rem, 5vw, 3rem)",
-              letterSpacing: "-0.04em",
-            }}
+            key={block.label}
+            className="wh-block tabular-nums"
+            style={{ background: block.bg, color: block.fg }}
           >
-            {it.value === undefined
-              ? "—"
-              : it.label === "days"
-              ? it.value
-              : String(it.value).padStart(2, "0")}
+            <div className="k">{block.label}</div>
+            <div className="v">{display}</div>
           </div>
-          <div className="mt-1 text-[9px] sm:text-[10px] uppercase tracking-[0.3em] text-white/50">
-            {it.label}
-          </div>
-        </div>
-      ))}
+        );
+      })}
     </div>
   );
 }
