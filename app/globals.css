@@ -12,17 +12,24 @@
    ============================================================ */
 
 @theme inline {
-  --color-background: var(--paper);
-  --color-foreground: var(--ink);
+  --color-background: var(--canvas);
+  --color-foreground: var(--fg);
   --font-sans: var(--font-archivo);
   --font-display: var(--font-archivo-black);
 }
 
 :root {
-  /* ---- Warm neutrals (the canvas & the dark) ---- */
-  --paper: #fffffd; /* warm white, the canvas, dominant surface */
-  --ink: #0f0f0d; /* near-black, primary text & headings */
-  --espresso: #2b1a12; /* darkest brown, inverted/dark sections */
+  color-scheme: dark;
+
+  /* ---- Warm neutrals — DARK by default ----
+     --paper / --ink stay literal (light / near-black) because the accent
+     components paint text with them (paper on orange, ink on amber). The
+     page canvas & body text use the semantic --canvas / --fg instead. */
+  --paper: #fffffd; /* literal warm white — accent text on dark fills */
+  --ink: #0f0f0d; /* literal near-black — accent text on light fills */
+  --canvas: #15100d; /* warm near-black — the page surface */
+  --fg: #f6eee4; /* warm off-white — primary text & headings */
+  --espresso: #2b1a12; /* lifted dark brown, featured/cinema bands */
   --coffee: #3a2417; /* coffee brown, deep neutral, rich borders */
 
   /* ---- Accent trio (golden-hour energy; solid fills, no gradients) ---- */
@@ -30,18 +37,19 @@
   --orange: #fe5722; /* the heat, primary pop, buttons */
   --pink: #fc769a; /* the playful spark, accents, dots */
 
-  /* ---- Derived warm tints (tuned to the palette) ---- */
-  --field: #f7f2ec; /* warm off-white, quiet panels, wells */
-  --line: #e8e0d6; /* warm hairline on paper */
-  --slate: #6b5647; /* secondary text (muted coffee) */
+  /* ---- Derived warm tints (tuned to the dark canvas) ---- */
+  --field: #201812; /* elevated dark surface, inputs & wells */
+  --line: #362a20; /* warm hairline on the canvas */
+  --slate: #c7b6a4; /* secondary text (warm light taupe) */
   --mute: #9b8b7c; /* tertiary text / captions / labels */
   --line-dark: #4a3526; /* hairline on espresso surfaces */
 
-  /* ---- Wordmark letter cycle (fixed: Orange Amber Pink Ink) ---- */
+  /* ---- Wordmark letter cycle (Orange Amber Pink, then fg so the 4th
+     letter stays legible on the dark canvas) ---- */
   --wm-1: var(--orange);
   --wm-2: var(--amber);
   --wm-3: var(--pink);
-  --wm-4: var(--ink);
+  --wm-4: var(--fg);
 
   /* ---- Type families (wired to next/font variables) ---- */
   --font-display: var(--font-archivo-black), "Arial Black", system-ui, sans-serif;
@@ -73,14 +81,14 @@
   --shadow: none; /* the system is FLAT */
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
 
-  --background: var(--paper);
-  --foreground: var(--ink);
+  --background: var(--canvas);
+  --foreground: var(--fg);
 }
 
 html,
 body {
-  background: var(--paper);
-  color: var(--ink);
+  background: var(--canvas);
+  color: var(--fg);
 }
 
 body {
@@ -103,7 +111,7 @@ body {
   font-size: clamp(2.5rem, 11vw, 9rem);
   line-height: 0.84;
   letter-spacing: var(--track-hero);
-  color: var(--ink);
+  color: var(--fg);
 }
 
 .wh-h2 {
@@ -112,7 +120,7 @@ body {
   font-size: clamp(1.75rem, 4vw, 2.75rem);
   line-height: 0.92;
   letter-spacing: var(--track-h2);
-  color: var(--ink);
+  color: var(--fg);
 }
 
 .wh-h3 {
@@ -121,7 +129,17 @@ body {
   font-size: clamp(1.25rem, 2.4vw, 1.6rem);
   line-height: 1;
   letter-spacing: var(--track-h3);
-  color: var(--ink);
+  color: var(--fg);
+}
+
+/* ---- Oversized poster numeral (the roman numeral as a graphic) ---- */
+.wh-numeral {
+  font-family: var(--font-display);
+  display: block;
+  font-size: clamp(5rem, 22vw, 15rem);
+  line-height: 0.78;
+  letter-spacing: -0.04em;
+  color: var(--fg);
 }
 
 .wh-lead {
@@ -129,7 +147,7 @@ body {
   font-weight: 500;
   font-size: clamp(1.125rem, 2.2vw, 1.3rem);
   line-height: 1.5;
-  color: var(--ink);
+  color: var(--fg);
 }
 
 .wh-body {

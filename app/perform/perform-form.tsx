@@ -5,7 +5,7 @@ import { useState } from "react";
 type Status = "idle" | "submitting" | "done" | "error";
 
 const inputClass =
-  "w-full bg-[var(--field)] border rounded-md px-4 py-3 text-[var(--ink)] placeholder:text-[var(--mute)] " +
+  "w-full bg-[var(--field)] border rounded-md px-4 py-3 text-[var(--fg)] placeholder:text-[var(--mute)] " +
   "focus:outline-none focus:border-[var(--orange)] transition-colors";
 const inputStyle = { borderColor: "var(--line)" } as const;
 
