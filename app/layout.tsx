@@ -1,8 +1,7 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Archivo, Archivo_Black } from "next/font/google";
 import "./globals.css";
 import { PostHogProvider } from "./providers";
-import SiteFooter from "./site-footer";
 
 // Archivo (multi-weight) for text; Archivo Black (single weight) for display.
 const archivo = Archivo({
@@ -52,6 +51,12 @@ export const metadata: Metadata = {
   },
 };
 
+// Dark by default: match the mobile browser chrome to the canvas.
+export const viewport: Viewport = {
+  themeColor: "#15100d",
+  colorScheme: "dark",
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -70,7 +75,6 @@ export default function RootLayout({
       </head>
       <body className="min-h-full flex flex-col">
         <PostHogProvider>{children}</PostHogProvider>
-        <SiteFooter />
       </body>
     </html>
   );

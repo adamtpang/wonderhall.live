@@ -31,7 +31,7 @@ export default function Small() {
             fontFamily: "var(--font-display)",
             fontSize: "clamp(2rem, 10vw, 11rem)",
             letterSpacing: "var(--track-hero)",
-            color: "var(--ink)",
+            color: "var(--fg)",
           }}
         >
           wondersmall

@@ -4,8 +4,8 @@ export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 export const alt = "Wonderhall, live music at Network School, Forest City";
 
-// Wordmark cycle: Orange, Amber, Pink, Ink.
-const CYCLE = ["#FE5722", "#FFB81E", "#FC769A", "#0F0F0D"];
+// Wordmark cycle: Orange, Amber, Pink, then warm off-white (legible on dark).
+const CYCLE = ["#FE5722", "#FFB81E", "#FC769A", "#F6EEE4"];
 
 export default async function Image() {
   return new ImageResponse(
@@ -18,7 +18,7 @@ export default async function Image() {
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
-          backgroundColor: "#FFFFFD",
+          backgroundColor: "#15100D",
           fontFamily: "sans-serif",
           padding: 80,
         }}
@@ -44,7 +44,7 @@ export default async function Image() {
             </span>
           ))}
         </div>
-        <div style={{ display: "flex", fontSize: 28, color: "#6B5647", marginTop: 44 }}>
+        <div style={{ display: "flex", fontSize: 28, color: "#C7B6A4", marginTop: 44 }}>
           Live music at Network School · Forest City
         </div>
       </div>

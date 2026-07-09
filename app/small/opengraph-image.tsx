@@ -15,7 +15,7 @@ export default async function Image() {
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
-          backgroundColor: "#FFFFFD",
+          backgroundColor: "#15100D",
           fontFamily: "sans-serif",
           padding: 80,
         }}
@@ -33,7 +33,7 @@ export default async function Image() {
             fontWeight: 900,
             letterSpacing: -4,
             lineHeight: 1,
-            color: "#0F0F0D",
+            color: "#F6EEE4",
           }}
         >
           wondersmall
@@ -42,7 +42,7 @@ export default async function Image() {
           style={{
             display: "flex",
             fontSize: 26,
-            color: "#6B5647",
+            color: "#C7B6A4",
             marginTop: 44,
             letterSpacing: 8,
             textTransform: "uppercase",
