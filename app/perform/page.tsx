@@ -38,10 +38,7 @@ export default function Perform() {
 
         <RevealNow delay={0.15}>
           <p className="wh-lead text-center mt-8">
-            The door&apos;s always open. Wonderhall is a meritocracy: if it&apos;s
-            worth ten minutes of prep, it&apos;s worth the stage. Tell us what
-            you&apos;d play. We run auditions before every show and we&apos;ll
-            reach out.
+            Tell us what you&apos;d play. We&apos;ll reach out.
           </p>
         </RevealNow>
 

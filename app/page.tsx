@@ -1,7 +1,7 @@
 import Countdown from "./countdown";
 import Gallery from "./gallery";
 import gallery from "./gallery-data.json";
-import { Reveal, RevealNow } from "./reveal";
+import { Reveal } from "./reveal";
 import Wordmark from "./wordmark";
 
 // ---- Shows ----
@@ -27,22 +27,13 @@ export default function Home() {
   return (
     <main className="relative z-10 flex-1 w-full">
       {/* TITLE — CSS-only entrance so the page is never blank without JS */}
-      <section className="w-full px-4 sm:px-6 pt-12 pb-4 sm:pt-16 sm:pb-6">
+      <section className="w-full px-4 sm:px-6 pt-12 pb-14 sm:pt-16 sm:pb-20">
         <h1 className="wh-rise flex justify-center">
           <Wordmark className="text-[clamp(2.25rem,12vw,13rem)]" />
         </h1>
         <p className="wh-rise wh-rise--late wh-eyebrow text-center mt-6">
-          We came to bring beauty back
+          Live music at Network School · Forest City
         </p>
-      </section>
-
-      {/* ABOUT — one line */}
-      <section className="w-full px-6 pt-8 pb-14 sm:pb-20">
-        <RevealNow delay={0.15}>
-          <p className="wh-lead w-full max-w-2xl mx-auto text-center">
-            A live music night at Network School, Forest City. Every even month.
-          </p>
-        </RevealNow>
       </section>
 
       {/* PHOTOS, auto-scrolling, under the aurora beam */}
@@ -81,7 +72,6 @@ export default function Home() {
       <section className="w-full px-4 sm:px-6 pb-20 sm:pb-24">
         <Reveal>
           <div className="w-full max-w-4xl mx-auto">
-            <p className="wh-eyebrow mb-3">Next Show</p>
             <ShowHead title="Wonderhall III" date={SHOW_III_DATE} />
             <Countdown />
           </div>
@@ -93,14 +83,12 @@ export default function Home() {
         className="w-full px-6 py-8"
         style={{ borderTop: "1px solid var(--line)" }}
       >
-        <div className="max-w-4xl mx-auto flex items-center justify-between gap-3">
-          <p className="wh-eyebrow" style={{ color: "var(--text-3)" }}>
-            © 2026 Wonderhall
-          </p>
-          <p className="wh-eyebrow" style={{ color: "var(--text-3)" }}>
-            Forest City, Malaysia
-          </p>
-        </div>
+        <p
+          className="wh-eyebrow max-w-4xl mx-auto"
+          style={{ color: "var(--text-3)" }}
+        >
+          © 2026 Wonderhall
+        </p>
       </footer>
     </main>
   );
