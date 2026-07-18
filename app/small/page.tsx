@@ -31,7 +31,7 @@ export default function Small() {
             fontFamily: "var(--font-display)",
             fontSize: "clamp(2rem, 10vw, 11rem)",
             letterSpacing: "var(--track-hero)",
-            color: "var(--fg)",
+            color: "var(--text)",
           }}
         >
           wondersmall
@@ -41,7 +41,7 @@ export default function Small() {
       <RevealNow delay={0.15}>
         <p
           className="wh-eyebrow mt-6 text-center"
-          style={{ color: "var(--orange)" }}
+          style={{ color: "var(--flame)" }}
         >
           A Tiny Desk Concert
         </p>
@@ -50,7 +50,7 @@ export default function Small() {
       <Reveal>
         <p
           className="wh-eyebrow mt-16 sm:mt-24 text-center"
-          style={{ color: "var(--mute)" }}
+          style={{ color: "var(--text-3)" }}
         >
           July 2026 · Invite Only
         </p>

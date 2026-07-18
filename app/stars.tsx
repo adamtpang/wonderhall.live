@@ -1,101 +1,46 @@
-// Decorative scattered stars that sit behind the page content.
-// Server component - static, deterministic positions, zero client JS.
+// Cosmic starfield — a fixed decorative layer behind all content.
+// Deterministic positions (no random) so it never reflows; zero client JS.
+// Glowing spark-yellow dots + four-point sparkles over the night backdrop.
 
 const stars = [
-  { x: 4, y: 8, size: 2, glow: 0.4 },
-  { x: 11, y: 22, size: 1, glow: 0.3 },
-  { x: 17, y: 14, size: 3, glow: 0.5 },
-  { x: 22, y: 38, size: 1, glow: 0.25 },
-  { x: 28, y: 6, size: 2, glow: 0.4 },
-  { x: 34, y: 27, size: 1, glow: 0.3 },
-  { x: 41, y: 15, size: 4, glow: 0.6 },
-  { x: 47, y: 44, size: 1, glow: 0.25 },
-  { x: 53, y: 9, size: 2, glow: 0.4 },
-  { x: 59, y: 32, size: 3, glow: 0.5 },
-  { x: 65, y: 19, size: 1, glow: 0.3 },
-  { x: 71, y: 41, size: 2, glow: 0.4 },
-  { x: 77, y: 12, size: 1, glow: 0.25 },
-  { x: 83, y: 28, size: 3, glow: 0.5 },
-  { x: 89, y: 17, size: 2, glow: 0.4 },
-  { x: 95, y: 36, size: 1, glow: 0.3 },
-  { x: 7, y: 52, size: 1, glow: 0.3 },
-  { x: 14, y: 64, size: 3, glow: 0.5 },
-  { x: 20, y: 78, size: 1, glow: 0.25 },
-  { x: 26, y: 56, size: 2, glow: 0.4 },
-  { x: 32, y: 71, size: 4, glow: 0.6 },
-  { x: 38, y: 88, size: 1, glow: 0.3 },
-  { x: 44, y: 60, size: 2, glow: 0.4 },
-  { x: 50, y: 82, size: 1, glow: 0.25 },
-  { x: 56, y: 67, size: 3, glow: 0.5 },
-  { x: 62, y: 91, size: 2, glow: 0.4 },
-  { x: 68, y: 58, size: 1, glow: 0.3 },
-  { x: 74, y: 75, size: 2, glow: 0.4 },
-  { x: 80, y: 86, size: 3, glow: 0.5 },
-  { x: 86, y: 62, size: 1, glow: 0.25 },
-  { x: 92, y: 79, size: 2, glow: 0.4 },
-  { x: 3, y: 33, size: 1, glow: 0.3 },
-  { x: 9, y: 47, size: 2, glow: 0.4 },
-  { x: 15, y: 95, size: 1, glow: 0.25 },
-  { x: 21, y: 4, size: 1, glow: 0.3 },
-  { x: 36, y: 49, size: 2, glow: 0.4 },
-  { x: 49, y: 23, size: 1, glow: 0.3 },
-  { x: 64, y: 4, size: 2, glow: 0.4 },
-  { x: 79, y: 50, size: 1, glow: 0.3 },
-  { x: 91, y: 5, size: 3, glow: 0.5 },
-];
+  [4, 8, 2, 0.4], [11, 22, 1, 0.3], [17, 14, 3, 0.5], [22, 38, 1, 0.25],
+  [28, 6, 2, 0.4], [34, 27, 1, 0.3], [41, 15, 4, 0.6], [47, 44, 1, 0.25],
+  [53, 9, 2, 0.4], [59, 32, 3, 0.5], [65, 19, 1, 0.3], [71, 41, 2, 0.4],
+  [77, 12, 1, 0.25], [83, 28, 3, 0.5], [89, 17, 2, 0.4], [95, 36, 1, 0.3],
+  [7, 52, 1, 0.3], [14, 64, 3, 0.5], [20, 78, 1, 0.25], [26, 56, 2, 0.4],
+  [32, 71, 4, 0.6], [38, 88, 1, 0.3], [44, 60, 2, 0.4], [50, 82, 1, 0.25],
+  [56, 67, 3, 0.5], [62, 91, 2, 0.4], [68, 58, 1, 0.3], [74, 75, 2, 0.4],
+  [80, 86, 3, 0.5], [86, 62, 1, 0.25], [92, 79, 2, 0.4], [3, 33, 1, 0.3],
+  [9, 47, 2, 0.4], [15, 95, 1, 0.25], [21, 4, 1, 0.3], [36, 49, 2, 0.4],
+  [49, 23, 1, 0.3], [64, 4, 2, 0.4], [79, 50, 1, 0.3], [91, 5, 3, 0.5],
+] as const;
 
 const sparkles = [
-  { x: 12, y: 18, size: 14 },
-  { x: 78, y: 24, size: 18 },
-  { x: 28, y: 72, size: 12 },
-  { x: 86, y: 70, size: 16 },
-  { x: 50, y: 12, size: 20 },
-];
+  [12, 18, 14], [78, 24, 18], [28, 72, 12], [86, 70, 16], [50, 12, 20],
+] as const;
 
 export default function Stars() {
   return (
-    <div
-      aria-hidden
-      className="fixed inset-0 pointer-events-none overflow-hidden z-0"
-    >
-      {/* warm sunrise wash at the bottom */}
-      <div
-        className="absolute inset-x-0 bottom-0 h-2/3"
-        style={{
-          background:
-            "radial-gradient(80% 60% at 50% 100%, rgba(251,146,60,0.18) 0%, rgba(253,224,71,0.10) 35%, rgba(255,255,255,0) 70%)",
-        }}
-      />
-
-      {/* subtle dots */}
-      {stars.map((s, i) => (
+    <div aria-hidden className="wh-starfield">
+      {stars.map(([x, y, s, g], i) => (
         <span
           key={`s-${i}`}
-          className="absolute rounded-full bg-yellow-200"
+          className="wh-dot"
           style={{
-            left: `${s.x}%`,
-            top: `${s.y}%`,
-            width: `${s.size}px`,
-            height: `${s.size}px`,
-            opacity: s.glow,
-            boxShadow: `0 0 ${s.size * 3}px ${s.size}px rgba(251,191,36,${
-              s.glow * 0.6
-            })`,
+            left: `${x}%`,
+            top: `${y}%`,
+            width: s,
+            height: s,
+            opacity: g,
+            boxShadow: `0 0 ${s * 3}px ${s}px rgba(251,239,72,${g * 0.6})`,
           }}
         />
       ))}
-
-      {/* 4-point sparkles */}
-      {sparkles.map((s, i) => (
+      {sparkles.map(([x, y, s], i) => (
         <svg
           key={`sp-${i}`}
-          className="absolute text-yellow-300 opacity-40"
-          style={{
-            left: `${s.x}%`,
-            top: `${s.y}%`,
-            width: `${s.size}px`,
-            height: `${s.size}px`,
-          }}
+          className="wh-sparkle"
+          style={{ left: `${x}%`, top: `${y}%`, width: s, height: s }}
           viewBox="0 0 24 24"
           fill="currentColor"
         >
