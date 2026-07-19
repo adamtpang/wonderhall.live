@@ -22,13 +22,13 @@ function compute(targetMs: number): TimeLeft {
   };
 }
 
-// Flat color blocks, rotating the accent trio + espresso (amber/pink carry ink
-// text for contrast). Mirrors the design system's signature component.
+// Glowing dusk blocks, each value lit by one of the four aurora lights.
+// Mirrors the design system's signature component (wh-block--*).
 const BLOCKS = [
-  { label: "Days", bg: "var(--orange)", fg: "var(--paper)" },
-  { label: "Hours", bg: "var(--amber)", fg: "var(--ink)" },
-  { label: "Minutes", bg: "var(--pink)", fg: "var(--ink)" },
-  { label: "Seconds", bg: "var(--espresso)", fg: "var(--paper)" },
+  { label: "Days", mod: "flame" },
+  { label: "Hours", mod: "rose" },
+  { label: "Minutes", mod: "aurora" },
+  { label: "Seconds", mod: "spark" },
 ] as const;
 
 export default function Countdown({ target = DEFAULT_TARGET }: { target?: string } = {}) {
@@ -56,8 +56,7 @@ export default function Countdown({ target = DEFAULT_TARGET }: { target?: string
         return (
           <div
             key={block.label}
-            className="wh-block tabular-nums"
-            style={{ background: block.bg, color: block.fg }}
+            className={`wh-block wh-block--${block.mod} tabular-nums`}
           >
             <div className="k">{block.label}</div>
             <div className="v">{display}</div>

@@ -5,8 +5,8 @@ import { useState } from "react";
 type Status = "idle" | "submitting" | "done" | "error";
 
 const inputClass =
-  "w-full bg-[var(--field)] border rounded-md px-4 py-3 text-[var(--fg)] placeholder:text-[var(--mute)] " +
-  "focus:outline-none focus:border-[var(--orange)] transition-colors";
+  "w-full bg-[var(--dusk)] border rounded-md px-4 py-3 text-[var(--text)] placeholder:text-[var(--text-3)] " +
+  "focus:outline-none focus:border-[var(--aurora)] transition-colors";
 const inputStyle = { borderColor: "var(--line)" } as const;
 
 const labelClass = "block wh-eyebrow mb-2";
@@ -101,7 +101,7 @@ export default function PerformForm() {
       <div>
         <label htmlFor="link" className={labelClass}>
           A link to your music or a clip{" "}
-          <span style={{ color: "var(--mute)" }}>(optional)</span>
+          <span style={{ color: "var(--text-3)" }}>(optional)</span>
         </label>
         <input id="link" name="link" type="text" maxLength={300} className={inputClass} style={inputStyle} placeholder="YouTube, IG, SoundCloud…" />
       </div>
@@ -109,7 +109,7 @@ export default function PerformForm() {
       <div>
         <label htmlFor="message" className={labelClass}>
           What would you play?{" "}
-          <span style={{ color: "var(--mute)" }}>(optional)</span>
+          <span style={{ color: "var(--text-3)" }}>(optional)</span>
         </label>
         <textarea
           id="message"
@@ -123,7 +123,7 @@ export default function PerformForm() {
       </div>
 
       {status === "error" && (
-        <p className="wh-body" style={{ color: "var(--orange)" }}>
+        <p className="wh-body" style={{ color: "var(--flame)" }}>
           Something went wrong. Try again, or message us on Discord.
         </p>
       )}
@@ -131,7 +131,7 @@ export default function PerformForm() {
       <button
         type="submit"
         disabled={status === "submitting"}
-        className="wh-btn wh-btn--orange w-full disabled:opacity-50 disabled:cursor-not-allowed"
+        className="wh-btn w-full disabled:opacity-50 disabled:cursor-not-allowed"
         style={{ fontSize: "0.8125rem", letterSpacing: "0.18em", textTransform: "uppercase" }}
       >
         {status === "submitting" ? "Sending…" : "Raise your hand"}

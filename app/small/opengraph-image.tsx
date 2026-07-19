@@ -15,17 +15,25 @@ export default async function Image() {
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
-          backgroundColor: "#15100D",
+          backgroundColor: "#201034",
+          backgroundImage:
+            "radial-gradient(120% 80% at 50% 0%, #2E1A4A 0%, #201034 45%, #0E0620 100%)",
           fontFamily: "sans-serif",
           padding: 80,
         }}
       >
-        {/* 5-color rule */}
-        <div style={{ display: "flex", width: "100%", height: 16, marginBottom: 56 }}>
-          <div style={{ flex: 1, background: "#FFB81E" }} />
-          <div style={{ flex: 1, background: "#FE5722" }} />
-          <div style={{ flex: 1, background: "#FC769A" }} />
-        </div>
+        {/* aurora beam */}
+        <div
+          style={{
+            display: "flex",
+            width: "100%",
+            height: 12,
+            marginBottom: 56,
+            borderRadius: 6,
+            background:
+              "linear-gradient(100deg, #E93D0C 0%, #EE4678 34%, #41F0C4 70%, #FBEF48 100%)",
+          }}
+        />
         <div
           style={{
             display: "flex",
@@ -33,7 +41,7 @@ export default async function Image() {
             fontWeight: 900,
             letterSpacing: -4,
             lineHeight: 1,
-            color: "#F6EEE4",
+            color: "#FBF4FF",
           }}
         >
           wondersmall
@@ -42,7 +50,7 @@ export default async function Image() {
           style={{
             display: "flex",
             fontSize: 26,
-            color: "#C7B6A4",
+            color: "#C9B8E0",
             marginTop: 44,
             letterSpacing: 8,
             textTransform: "uppercase",

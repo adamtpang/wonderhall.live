@@ -1,19 +1,27 @@
 import type { Metadata, Viewport } from "next";
-import { Archivo, Archivo_Black } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import { PostHogProvider } from "./providers";
+import Stars from "./stars";
 
-// Archivo (multi-weight) for text; Archivo Black (single weight) for display.
-const archivo = Archivo({
+// Self-hosted fonts. next/font/google fetches from Google Fonts at BUILD
+// time, which fails the whole build on any transient network hiccup
+// ("npm run build exited 1" on Vercel). Bundling the woff2 files removes
+// that dependency entirely. Archivo is the variable font (400-900 in one
+// file); Archivo Black is the single-weight display face. latin subset
+// covers all glyphs on the site (incl. ·, ©, em dash).
+const archivo = localFont({
+  src: "./fonts/Archivo-latin.woff2",
   variable: "--font-archivo",
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800", "900"],
+  weight: "400 900",
+  display: "swap",
 });
 
-const archivoBlack = Archivo_Black({
+const archivoBlack = localFont({
+  src: "./fonts/ArchivoBlack-latin.woff2",
   variable: "--font-archivo-black",
-  subsets: ["latin"],
   weight: "400",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -51,9 +59,9 @@ export const metadata: Metadata = {
   },
 };
 
-// Dark by default: match the mobile browser chrome to the canvas.
+// Cosmic night: match the mobile browser chrome to the canvas.
 export const viewport: Viewport = {
-  themeColor: "#15100d",
+  themeColor: "#201034",
   colorScheme: "dark",
 };
 
@@ -74,6 +82,10 @@ export default function RootLayout({
         <link rel="preconnect" href="https://luma.com" />
       </head>
       <body className="min-h-full flex flex-col">
+        {/* Cosmic backdrop: night gradient + aurora veil, grain, starfield */}
+        <div aria-hidden className="wh-backdrop" />
+        <div aria-hidden className="wh-grain" />
+        <Stars />
         <PostHogProvider>{children}</PostHogProvider>
       </body>
     </html>

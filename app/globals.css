@@ -1,19 +1,17 @@
-/* Scan only app/ for class usage: workspace handoff .md files at the repo
-   root contain Windows paths (e.g. "\3b3d07...") that Tailwind's scanner
-   misreads as CSS hex escapes and crashes on. */
 @import "tailwindcss" source(none);
 @source "./";
 
 /* ============================================================
-   WONDERHALL II - warm golden-hour design system
-   Paper-white canvas, ink + espresso for depth, an accent trio
-   (amber, orange, pink), set in Archivo Black.
-   Source of truth: claude.ai/design handoff (colors_and_type.css).
+   WONDERHALL II — "COSMIC DREAM" design system
+   A deep purple-black night, a luminous aurora beam, glowing
+   stars and painterly grain — set in Archivo Black.
+   Palette: e93d0c · ee4678 · 41f0c4 · fbef48 on a 201034 night.
+   Source of truth: claude.ai/design · colors_and_type.css
    ============================================================ */
 
 @theme inline {
-  --color-background: var(--canvas);
-  --color-foreground: var(--fg);
+  --color-background: var(--night);
+  --color-foreground: var(--text);
   --font-sans: var(--font-archivo);
   --font-display: var(--font-archivo-black);
 }
@@ -21,52 +19,65 @@
 :root {
   color-scheme: dark;
 
-  /* ---- Warm neutrals — DARK by default ----
-     --paper / --ink stay literal (light / near-black) because the accent
-     components paint text with them (paper on orange, ink on amber). The
-     page canvas & body text use the semantic --canvas / --fg instead. */
-  --paper: #fffffd; /* literal warm white — accent text on dark fills */
-  --ink: #0f0f0d; /* literal near-black — accent text on light fills */
-  --canvas: #15100d; /* warm near-black — the page surface */
-  --fg: #f6eee4; /* warm off-white — primary text & headings */
-  --espresso: #2b1a12; /* lifted dark brown, featured/cinema bands */
-  --coffee: #3a2417; /* coffee brown, deep neutral, rich borders */
+  /* ---- THE NIGHT — deep purple canvas, void → raised surface ---- */
+  --void: #0e0620; /* darkest — page edges, deepest ground */
+  --night: #201034; /* the canvas base — dominant surface */
+  --dusk: #2e1a4a; /* raised panels / cards */
+  --haze: #3d2660; /* hover lift / hairline-light surface */
 
-  /* ---- Accent trio (golden-hour energy; solid fills, no gradients) ---- */
-  --amber: #ffb81e; /* warm highlight, ::selection */
-  --orange: #fe5722; /* the heat, primary pop, buttons */
-  --pink: #fc769a; /* the playful spark, accents, dots */
+  /* ---- THE LIGHT — the four luminous accents (the aurora) ---- */
+  --flame: #e93d0c; /* red-orange — the heat, primary glow */
+  --rose: #ee4678; /* pink — the romance */
+  --aurora: #41f0c4; /* mint/teal — the cool beam, "go" */
+  --spark: #fbef48; /* yellow — the stars, highlights */
 
-  /* ---- Derived warm tints (tuned to the dark canvas) ---- */
-  --field: #201812; /* elevated dark surface, inputs & wells */
-  --line: #362a20; /* warm hairline on the canvas */
-  --slate: #c7b6a4; /* secondary text (warm light taupe) */
-  --mute: #9b8b7c; /* tertiary text / captions / labels */
-  --line-dark: #4a3526; /* hairline on espresso surfaces */
+  /* ---- Text on night (warm off-whites & lavenders) ---- */
+  --text: #fbf4ff; /* primary — warm white with a violet hint */
+  --text-2: #c9b8e0; /* secondary — soft lavender */
+  --text-3: #8e7aae; /* tertiary / captions / labels */
+  --line: rgba(255, 255, 255, 0.1); /* hairline on night */
+  --line-2: rgba(255, 255, 255, 0.05); /* faintest divider */
 
-  /* ---- Wordmark letter cycle (Orange Amber Pink, then fg so the 4th
-     letter stays legible on the dark canvas) ---- */
-  --wm-1: var(--orange);
-  --wm-2: var(--amber);
-  --wm-3: var(--pink);
-  --wm-4: var(--fg);
+  /* ---- Signature gradients — the aurora is the hero ---- */
+  --grad-aurora: linear-gradient(100deg, #e93d0c 0%, #ee4678 34%, #41f0c4 70%, #fbef48 100%);
+  --grad-beam: linear-gradient(180deg, #fbef48 0%, #e93d0c 28%, #ee4678 55%, #41f0c4 100%);
+  --grad-night: radial-gradient(120% 80% at 50% 0%, #2e1a4a 0%, #201034 45%, #0e0620 100%);
+  --glow-veil: radial-gradient(
+    60% 50% at 50% 38%,
+    rgba(65, 240, 196, 0.18) 0%,
+    rgba(233, 61, 12, 0.14) 40%,
+    rgba(238, 70, 120, 0.1) 60%,
+    rgba(14, 6, 32, 0) 78%
+  );
 
-  /* ---- Type families (wired to next/font variables) ---- */
+  /* ---- Glow shadows (luminous — the only shadow system) ---- */
+  --glow-flame: 0 0 40px -6px rgba(233, 61, 12, 0.55);
+  --glow-aurora: 0 0 40px -6px rgba(65, 240, 196, 0.5);
+  --glow-rose: 0 0 36px -6px rgba(238, 70, 120, 0.5);
+  --glow-spark: 0 0 24px 2px rgba(251, 239, 72, 0.65);
+  --glow-card: 0 24px 70px -28px rgba(0, 0, 0, 0.7),
+    0 0 60px -30px rgba(65, 240, 196, 0.35);
+
+  /* ---- Painterly grain (SVG noise, tiled). Overlay ~8–12% on dark fills. ---- */
+  --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+
+  /* ---- Type families (wired to next/font/local variables) ---- */
   --font-display: var(--font-archivo-black), "Arial Black", system-ui, sans-serif;
   --font-sans: var(--font-archivo), system-ui, -apple-system, BlinkMacSystemFont,
     "Segoe UI", Helvetica, Arial, sans-serif;
 
-  /* ---- Tracking scale (display tight; microcopy wide) ---- */
   --track-hero: -0.025em;
   --track-h2: -0.02em;
   --track-h3: -0.01em;
   --track-eyebrow: 0.3em;
   --track-block: 0.18em;
 
-  /* ---- Radii (square by default) ---- */
+  /* ---- Radii ---- */
   --radius-0: 0px;
   --radius-sm: 4px;
-  --radius-md: 6px;
+  --radius-md: 8px;
+  --radius-lg: 16px; /* soft glowing cards */
+  --radius-pill: 999px;
 
   /* ---- Spacing (8px grid) ---- */
   --sp-1: 8px;
@@ -75,20 +86,17 @@
   --sp-4: 48px;
   --sp-5: 72px;
 
-  /* ---- Borders / motion / elevation ---- */
-  --rule-hair: 1px solid var(--line);
-  --rule-bold: 3px solid var(--ink);
-  --shadow: none; /* the system is FLAT */
+  --shadow: var(--glow-card);
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
 
-  --background: var(--canvas);
-  --foreground: var(--fg);
+  --background: var(--night);
+  --foreground: var(--text);
 }
 
 html,
 body {
-  background: var(--canvas);
-  color: var(--fg);
+  background: var(--night);
+  color: var(--text);
 }
 
 body {
@@ -98,8 +106,52 @@ body {
 }
 
 ::selection {
-  background: var(--amber);
-  color: var(--ink);
+  background: var(--spark);
+  color: var(--night);
+}
+
+/* ============================================================
+   COSMIC BACKDROP — fixed layers behind all content (z-10)
+   ============================================================ */
+.wh-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: var(--grad-night);
+}
+.wh-backdrop::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--glow-veil);
+}
+.wh-grain {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image: var(--grain);
+  background-size: 160px 160px;
+  opacity: 0.1;
+  mix-blend-mode: overlay;
+}
+.wh-starfield {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+.wh-dot {
+  position: absolute;
+  border-radius: 50%;
+  background: var(--spark);
+}
+.wh-sparkle {
+  position: absolute;
+  color: var(--spark);
+  filter: drop-shadow(0 0 6px rgba(251, 239, 72, 0.9));
 }
 
 /* ============================================================
@@ -111,25 +163,53 @@ body {
   font-size: clamp(2.5rem, 11vw, 9rem);
   line-height: 0.84;
   letter-spacing: var(--track-hero);
-  color: var(--fg);
+  color: var(--text);
 }
-
 .wh-h2 {
   font-family: var(--font-display);
   text-transform: uppercase;
   font-size: clamp(1.75rem, 4vw, 2.75rem);
   line-height: 0.92;
   letter-spacing: var(--track-h2);
-  color: var(--fg);
+  color: var(--text);
 }
-
 .wh-h3 {
   font-family: var(--font-display);
   text-transform: uppercase;
   font-size: clamp(1.25rem, 2.4vw, 1.6rem);
   line-height: 1;
   letter-spacing: var(--track-h3);
-  color: var(--fg);
+  color: var(--text);
+}
+.wh-lead {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: clamp(1.125rem, 2.2vw, 1.3rem);
+  line-height: 1.55;
+  color: var(--text);
+}
+.wh-body {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--text-2);
+}
+.wh-eyebrow {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.8125rem;
+  letter-spacing: var(--track-eyebrow);
+  color: var(--aurora);
+}
+
+/* ---- Aurora-gradient display (the type IS the light) ---- */
+.wh-aurora-text {
+  background: var(--grad-aurora);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
 /* ---- Oversized poster numeral (the roman numeral as a graphic) ---- */
@@ -139,35 +219,11 @@ body {
   font-size: clamp(5rem, 22vw, 15rem);
   line-height: 0.78;
   letter-spacing: -0.04em;
-  color: var(--fg);
+  color: var(--text);
 }
 
-.wh-lead {
-  font-family: var(--font-sans);
-  font-weight: 500;
-  font-size: clamp(1.125rem, 2.2vw, 1.3rem);
-  line-height: 1.5;
-  color: var(--fg);
-}
-
-.wh-body {
-  font-family: var(--font-sans);
-  font-weight: 400;
-  font-size: 1rem;
-  line-height: 1.6;
-  color: var(--slate);
-}
-
-.wh-eyebrow {
-  font-family: var(--font-sans);
-  font-weight: 700;
-  text-transform: uppercase;
-  font-size: 0.8125rem;
-  letter-spacing: var(--track-eyebrow);
-  color: var(--slate);
-}
-
-/* ---- The wordmark: each letter cycles Orange, Amber, Pink, Ink ---- */
+/* ---- The wordmark: each letter cycles the four lights, softly glowing.
+   Cycle: Flame → Rose → Aurora → Spark (fixed) ---- */
 .wh-wordmark {
   font-family: var(--font-display);
   text-transform: uppercase;
@@ -176,30 +232,41 @@ body {
   display: inline-flex;
   white-space: nowrap;
 }
+.wh-wordmark > span {
+  transition: text-shadow 0.3s var(--ease);
+}
 .wh-wordmark > span:nth-child(4n + 1) {
-  color: var(--wm-1);
+  color: var(--flame);
+  text-shadow: 0 0 28px rgba(233, 61, 12, 0.55);
 }
 .wh-wordmark > span:nth-child(4n + 2) {
-  color: var(--wm-2);
+  color: var(--rose);
+  text-shadow: 0 0 28px rgba(238, 70, 120, 0.55);
 }
 .wh-wordmark > span:nth-child(4n + 3) {
-  color: var(--wm-3);
+  color: var(--aurora);
+  text-shadow: 0 0 28px rgba(65, 240, 196, 0.55);
 }
 .wh-wordmark > span:nth-child(4n + 4) {
-  color: var(--wm-4);
+  color: var(--spark);
+  text-shadow: 0 0 28px rgba(251, 239, 72, 0.55);
 }
 .wh-wordmark--ink > span {
-  color: var(--ink) !important;
+  color: var(--text) !important;
+  text-shadow: none !important;
 }
 
 /* ============================================================
-   SIGNATURE COMPONENT - flat color blocks (date / time / place)
+   SIGNATURE COMPONENT — glowing fact blocks
    ============================================================ */
 .wh-block {
   padding: 22px 22px 24px;
-  border-radius: var(--radius-0);
-  color: var(--paper);
-  background: var(--orange);
+  border-radius: var(--radius-md);
+  color: var(--text);
+  background: var(--dusk);
+  box-shadow: inset 0 0 0 1px var(--line);
+  position: relative;
+  overflow: hidden;
 }
 .wh-block .k {
   font-family: var(--font-sans);
@@ -207,8 +274,7 @@ body {
   text-transform: uppercase;
   letter-spacing: var(--track-block);
   font-size: 0.75rem;
-  /* full opacity: 0.85 paper-on-orange drops below 3:1 contrast */
-  opacity: 1;
+  color: var(--text-3);
 }
 .wh-block .v {
   font-family: var(--font-display);
@@ -217,9 +283,20 @@ body {
   line-height: 1;
   margin-top: 8px;
 }
+.wh-block--flame .v {
+  color: var(--flame);
+}
+.wh-block--rose .v {
+  color: var(--rose);
+}
+.wh-block--aurora .v {
+  color: var(--aurora);
+}
+.wh-block--spark .v {
+  color: var(--spark);
+}
 
-/* Compact step so "MINUTES" / "SECONDS" fit a 4-up grid on phones.
-   `width < 40rem` matches Tailwind's sm: boundary exactly (no overlap at 640px). */
+/* Compact step so "MINUTES" / "SECONDS" fit a 4-up grid on phones. */
 @media (width < 40rem) {
   .wh-block {
     padding: 14px 8px 16px;
@@ -233,8 +310,89 @@ body {
   }
 }
 
-/* ---- CSS-only entrance for above-the-fold / critical content (works
-   without JS, unlike the framer-motion Reveal wrappers) ---- */
+/* ---- Chips (pill) ---- */
+.wh-chip {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  font-size: 1rem;
+  color: var(--night);
+  background: var(--spark);
+  padding: 7px 16px;
+  border-radius: var(--radius-pill);
+  display: inline-block;
+}
+.wh-chip--flame {
+  background: var(--flame);
+  color: var(--text);
+}
+.wh-chip--rose {
+  background: var(--rose);
+  color: var(--text);
+}
+.wh-chip--aurora {
+  background: var(--aurora);
+  color: var(--night);
+}
+
+/* ---- Buttons (pill, glowing) ---- */
+.wh-btn {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 0.875rem;
+  border: none;
+  border-radius: var(--radius-pill);
+  padding: 13px 26px;
+  cursor: pointer;
+  background: var(--flame);
+  color: var(--text);
+  box-shadow: var(--glow-flame);
+  transition: transform 0.2s var(--ease), box-shadow 0.3s var(--ease);
+}
+.wh-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 0 56px -4px rgba(233, 61, 12, 0.7);
+}
+.wh-btn--aurora {
+  background: var(--aurora);
+  color: var(--night);
+  box-shadow: var(--glow-aurora);
+}
+.wh-btn--aurora:hover {
+  box-shadow: 0 0 56px -4px rgba(65, 240, 196, 0.7);
+}
+.wh-btn--ghost {
+  background: transparent;
+  color: var(--text);
+  box-shadow: inset 0 0 0 1.5px var(--line);
+}
+.wh-btn--ghost:hover {
+  box-shadow: inset 0 0 0 1.5px var(--aurora);
+  transform: translateY(-1px);
+}
+
+/* ---- The aurora rule (a luminous gradient hairline / beam) ---- */
+.wh-rule {
+  height: 4px;
+  border-radius: 2px;
+  background: var(--grad-aurora);
+  box-shadow: var(--glow-aurora);
+}
+
+/* ---- A glowing framed panel (raised dusk card / video frame) ---- */
+.wh-panel {
+  background: var(--dusk);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--glow-card);
+}
+.wh-frame {
+  border-radius: var(--radius-lg);
+  box-shadow: inset 0 0 0 1px var(--line), var(--glow-card);
+}
+
+/* ============================================================
+   CSS-only entrance for above-the-fold / critical content
+   (works without JS, unlike the framer-motion Reveal wrappers)
+   ============================================================ */
 @keyframes wh-rise {
   from {
     opacity: 0;
@@ -258,53 +416,6 @@ body {
   }
 }
 
-/* ---- Chips ---- */
-.wh-chip {
-  font-family: var(--font-display);
-  text-transform: uppercase;
-  font-size: 1rem;
-  color: var(--paper);
-  background: var(--orange);
-  padding: 7px 16px;
-  border-radius: var(--radius-sm);
-  letter-spacing: 0.01em;
-  display: inline-block;
-}
-
-/* ---- Buttons ---- */
-.wh-btn {
-  font-family: var(--font-sans);
-  font-weight: 700;
-  font-size: 0.875rem;
-  border: none;
-  border-radius: var(--radius-md);
-  padding: 13px 24px;
-  cursor: pointer;
-  background: var(--ink);
-  color: var(--paper);
-  transition: opacity 0.2s var(--ease);
-}
-.wh-btn:hover {
-  opacity: 0.85;
-}
-.wh-btn--orange {
-  background: var(--orange);
-  color: var(--paper);
-}
-.wh-btn--pink {
-  background: var(--pink);
-  color: var(--ink);
-}
-.wh-btn--amber {
-  background: var(--amber);
-  color: var(--ink);
-}
-.wh-btn--ghost {
-  background: transparent;
-  color: var(--ink);
-  box-shadow: inset 0 0 0 2px var(--ink);
-}
-
 /* ---- Gallery pause/play toggle (WCAG 2.2.2 control for the marquee) ---- */
 .wh-gallery-toggle {
   font-family: var(--font-sans);
@@ -314,39 +425,18 @@ body {
   font-size: 0.6875rem;
   padding: 10px 16px;
   border: none;
-  border-radius: var(--radius-sm);
-  background: var(--ink);
-  color: var(--paper);
+  border-radius: var(--radius-pill);
+  background: rgba(14, 6, 32, 0.6);
+  color: var(--text);
+  box-shadow: inset 0 0 0 1.5px var(--line);
   cursor: pointer;
-  transition: opacity 0.2s var(--ease);
+  backdrop-filter: blur(6px);
+  transition: box-shadow 0.3s var(--ease);
 }
 .wh-gallery-toggle:hover {
-  opacity: 0.85;
+  box-shadow: inset 0 0 0 1.5px var(--aurora);
 }
 .wh-gallery-toggle:focus-visible {
-  outline: 2px solid var(--orange);
+  outline: 2px solid var(--aurora);
   outline-offset: 2px;
-}
-
-/* ---- QR codes (server-rendered SVG scaled by the wrapper) ---- */
-.wh-qr svg {
-  display: block;
-  width: 100%;
-  height: auto;
-}
-
-/* ---- The accent rule (ties a photo / header to the system) ---- */
-.wh-rule {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  height: 10px;
-}
-.wh-rule > :nth-child(1) {
-  background: var(--amber);
-}
-.wh-rule > :nth-child(2) {
-  background: var(--orange);
-}
-.wh-rule > :nth-child(3) {
-  background: var(--pink);
 }
