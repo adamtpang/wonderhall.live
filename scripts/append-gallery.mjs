@@ -8,7 +8,7 @@ import { readdir, readFile, mkdir, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 import sharp from "sharp";
 
-const NEW_SRC = "C:/Users/adamp/OneDrive/Desktop/wonderhall-2-photos";
+const NEW_SRC = "C:/Users/adamp/Desktop/wonderhall2";
 const OUT_DIR = "public/gallery";
 const DATA_FILE = "app/gallery-data.json";
 

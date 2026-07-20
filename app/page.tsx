@@ -6,10 +6,10 @@ import { Reveal } from "./reveal";
 import Wordmark from "./wordmark";
 
 // Shows in chronological order; rendered reverse-chronological (II, then I).
-// `start` = seconds into the recap where the event actually begins.
+// Videos are trimmed to the event on YouTube, so no start offset is needed.
 const SHOWS = [
-  { numeral: "I", title: "Wonderhall I", date: "18 April 2026", videoId: "My6bShyEurI", start: 140 },
-  { numeral: "II", title: "Wonderhall II", date: "20 June 2026", videoId: "YoY8NJs-ytY", start: 460 },
+  { numeral: "I", title: "Wonderhall I", date: "18 April 2026", videoId: "My6bShyEurI" },
+  { numeral: "II", title: "Wonderhall II", date: "20 June 2026", videoId: "YoY8NJs-ytY" },
 ];
 const SHOW_III_DATE = "23 August 2026";
 
@@ -92,7 +92,7 @@ export default function Home() {
         <Gallery photos={gallery} />
       </section>
 
-      {/* SHOWS — reverse chronological: II, then I. Cropped to the event start. */}
+      {/* SHOWS — reverse chronological: II, then I. */}
       {[...SHOWS].reverse().map((show) => (
         <section
           key={show.title}
@@ -107,7 +107,7 @@ export default function Home() {
               />
               <div className="w-full aspect-video overflow-hidden bg-black wh-frame">
                 <iframe
-                  src={`https://www.youtube-nocookie.com/embed/${show.videoId}?start=${show.start}&playsinline=1&rel=0`}
+                  src={`https://www.youtube-nocookie.com/embed/${show.videoId}?playsinline=1&rel=0`}
                   title={`${show.title} — ${show.date}`}
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                   allowFullScreen
