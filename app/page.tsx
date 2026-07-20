@@ -13,8 +13,7 @@ const SHOWS = [
 ];
 const SHOW_III_DATE = "23 August 2026";
 
-// PLACEHOLDER: still the Wonderhall II (June) event. Swap for the Wonderhall
-// III Luma event ID once it exists.
+// One recurring Luma event, recycled for each show (intentional).
 const LUMA_EVENT_ID = "47q03ybr";
 
 // Featured Instagram post, embedded under the headline.
@@ -181,7 +180,7 @@ export default function Home() {
             © 2026 Wonderhall · Forest City
           </p>
           <p className="wh-eyebrow" style={{ color: "var(--text-3)" }}>
-            Built by{" "}
+            Created by{" "}
             {CREDITS.map((c, i) => (
               <span key={c.name}>
                 {c.url ? (
