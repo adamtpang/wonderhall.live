@@ -1,7 +1,7 @@
-import Image from "next/image";
 import Countdown from "./countdown";
 import Gallery from "./gallery";
 import gallery from "./gallery-data.json";
+import PhotoGrid from "./photo-grid";
 import { Reveal } from "./reveal";
 import Wordmark from "./wordmark";
 
@@ -18,9 +18,6 @@ const LUMA_EVENT_ID = "47q03ybr";
 
 // Featured Instagram post, embedded under the headline.
 const IG_POST = "DajcoZdPQc4";
-
-// The full set, shown statically at the bottom.
-const GRID = gallery;
 
 // Credits — order matches the posters. Leave url empty for plain text.
 const CREDITS = [
@@ -142,30 +139,12 @@ export default function Home() {
         </Reveal>
       </section>
 
-      {/* MORE PHOTOS — a still grid at the bottom */}
+      {/* MORE PHOTOS — the full set, static, reshuffled each load */}
       <section className="w-full px-4 sm:px-6 pb-20 sm:pb-28">
         <Reveal>
           <div className="w-full max-w-5xl mx-auto">
             <div className="wh-rule mb-6" />
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-3">
-              {GRID.map((photo, i) => (
-                <div
-                  key={photo.src}
-                  className="overflow-hidden rounded-sm"
-                  style={{ boxShadow: "inset 0 0 0 1px var(--line)" }}
-                >
-                  <Image
-                    src={photo.src}
-                    width={photo.width}
-                    height={photo.height}
-                    alt=""
-                    sizes="(max-width: 640px) 50vw, 33vw"
-                    className="w-full h-full object-cover aspect-square block wh-graded"
-                    loading={i < 3 ? "eager" : "lazy"}
-                  />
-                </div>
-              ))}
-            </div>
+            <PhotoGrid photos={gallery} />
           </div>
         </Reveal>
       </section>

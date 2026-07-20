@@ -111,32 +111,32 @@
   },
   {
     "src": "/gallery/23.jpg",
-    "width": 1600,
-    "height": 1119
-  },
-  {
-    "src": "/gallery/24.jpg",
     "width": 992,
     "height": 1600
   },
   {
-    "src": "/gallery/25.jpg",
+    "src": "/gallery/24.jpg",
     "width": 1067,
     "height": 1600
   },
   {
-    "src": "/gallery/26.jpg",
+    "src": "/gallery/25.jpg",
     "width": 1174,
     "height": 1600
   },
   {
-    "src": "/gallery/27.jpg",
+    "src": "/gallery/26.jpg",
     "width": 1148,
     "height": 1600
   },
   {
+    "src": "/gallery/27.jpg",
+    "width": 1600,
+    "height": 1067
+  },
+  {
     "src": "/gallery/28.jpg",
-    "width": 1067,
+    "width": 1029,
     "height": 1600
   },
   {
@@ -146,8 +146,8 @@
   },
   {
     "src": "/gallery/30.jpg",
-    "width": 1029,
-    "height": 1600
+    "width": 1600,
+    "height": 1067
   },
   {
     "src": "/gallery/31.jpg",
@@ -156,23 +156,23 @@
   },
   {
     "src": "/gallery/32.jpg",
-    "width": 1600,
-    "height": 1067
-  },
-  {
-    "src": "/gallery/33.jpg",
-    "width": 1600,
-    "height": 1067
-  },
-  {
-    "src": "/gallery/34.jpg",
     "width": 1067,
     "height": 1600
   },
   {
-    "src": "/gallery/35.jpg",
+    "src": "/gallery/33.jpg",
     "width": 1600,
     "height": 910
+  },
+  {
+    "src": "/gallery/34.jpg",
+    "width": 1600,
+    "height": 1067
+  },
+  {
+    "src": "/gallery/35.jpg",
+    "width": 1067,
+    "height": 1600
   },
   {
     "src": "/gallery/36.jpg",
@@ -181,13 +181,13 @@
   },
   {
     "src": "/gallery/37.jpg",
-    "width": 1067,
-    "height": 1600
+    "width": 1600,
+    "height": 1067
   },
   {
     "src": "/gallery/38.jpg",
-    "width": 1600,
-    "height": 1067
+    "width": 1067,
+    "height": 1600
   },
   {
     "src": "/gallery/39.jpg",
@@ -201,8 +201,8 @@
   },
   {
     "src": "/gallery/41.jpg",
-    "width": 1600,
-    "height": 1067
+    "width": 1067,
+    "height": 1600
   },
   {
     "src": "/gallery/42.jpg",
@@ -221,7 +221,7 @@
   },
   {
     "src": "/gallery/45.jpg",
-    "width": 1067,
+    "width": 1170,
     "height": 1600
   },
   {
@@ -231,13 +231,13 @@
   },
   {
     "src": "/gallery/47.jpg",
-    "width": 1170,
-    "height": 1600
+    "width": 1600,
+    "height": 1067
   },
   {
     "src": "/gallery/48.jpg",
-    "width": 1067,
-    "height": 1600
+    "width": 1600,
+    "height": 1067
   },
   {
     "src": "/gallery/49.jpg",
@@ -252,7 +252,7 @@
   {
     "src": "/gallery/51.jpg",
     "width": 1600,
-    "height": 1067
+    "height": 958
   },
   {
     "src": "/gallery/52.jpg",
@@ -261,41 +261,26 @@
   },
   {
     "src": "/gallery/53.jpg",
-    "width": 1600,
-    "height": 1067
+    "width": 1067,
+    "height": 1600
   },
   {
     "src": "/gallery/54.jpg",
-    "width": 1600,
-    "height": 958
+    "width": 1067,
+    "height": 1600
   },
   {
     "src": "/gallery/55.jpg",
-    "width": 1067,
-    "height": 1600
+    "width": 1600,
+    "height": 1067
   },
   {
     "src": "/gallery/56.jpg",
-    "width": 1067,
-    "height": 1600
+    "width": 1600,
+    "height": 1067
   },
   {
     "src": "/gallery/57.jpg",
-    "width": 1067,
-    "height": 1600
-  },
-  {
-    "src": "/gallery/58.jpg",
-    "width": 1600,
-    "height": 1067
-  },
-  {
-    "src": "/gallery/59.jpg",
-    "width": 1600,
-    "height": 1067
-  },
-  {
-    "src": "/gallery/60.jpg",
     "width": 1021,
     "height": 1600
   }
