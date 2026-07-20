@@ -19,8 +19,8 @@ const LUMA_EVENT_ID = "47q03ybr";
 // Featured Instagram post, embedded under the headline.
 const IG_POST = "DajcoZdPQc4";
 
-// A dozen stills for the bottom grid.
-const GRID = gallery.slice(0, 12);
+// The full set, shown statically at the bottom.
+const GRID = gallery;
 
 // Credits — order matches the posters. Leave url empty for plain text.
 const CREDITS = [
@@ -66,24 +66,6 @@ export default function Home() {
         </p>
       </section>
 
-      {/* FEATURED — Instagram post, right under the headline */}
-      <section className="w-full px-4 sm:px-6 pb-14 sm:pb-20">
-        <div
-          className="w-full max-w-[400px] mx-auto overflow-hidden rounded-sm bg-white"
-          style={{ boxShadow: "inset 0 0 0 1px var(--line)" }}
-        >
-          <iframe
-            src={`https://www.instagram.com/p/${IG_POST}/embed`}
-            title="Wonderhall on Instagram"
-            className="w-full block"
-            style={{ height: 640, border: "none" }}
-            scrolling="no"
-            allowFullScreen
-            loading="lazy"
-          />
-        </div>
-      </section>
-
       {/* PHOTO CAROUSEL */}
       <section className="w-full">
         <div className="w-full max-w-5xl mx-auto px-4 sm:px-6">
@@ -127,16 +109,34 @@ export default function Home() {
             <p className="wh-eyebrow wh-eyebrow--accent mb-4">Next Show</p>
             <ShowHead numeral="III" title="Wonderhall III" date={SHOW_III_DATE} />
             <Countdown />
-            <div className="mt-8 w-full overflow-hidden rounded-sm bg-white wh-frame">
-              <iframe
-                src={`https://luma.com/embed/event/${LUMA_EVENT_ID}/simple`}
-                title="Wonderhall III RSVP"
-                width="100%"
-                height={520}
-                loading="lazy"
-                allowFullScreen
-                className="w-full block"
-              />
+            <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-4 items-start">
+              {/* Instagram, left of the RSVP */}
+              <div
+                className="w-full overflow-hidden rounded-sm bg-white"
+                style={{ boxShadow: "inset 0 0 0 1px var(--line)" }}
+              >
+                <iframe
+                  src={`https://www.instagram.com/p/${IG_POST}/embed`}
+                  title="Wonderhall on Instagram"
+                  className="w-full block"
+                  style={{ height: 640, border: "none" }}
+                  scrolling="no"
+                  allowFullScreen
+                  loading="lazy"
+                />
+              </div>
+              {/* Luma RSVP, right */}
+              <div className="w-full overflow-hidden rounded-sm bg-white wh-frame">
+                <iframe
+                  src={`https://luma.com/embed/event/${LUMA_EVENT_ID}/simple`}
+                  title="Wonderhall III RSVP"
+                  width="100%"
+                  height={640}
+                  loading="lazy"
+                  allowFullScreen
+                  className="w-full block"
+                />
+              </div>
             </div>
           </div>
         </Reveal>

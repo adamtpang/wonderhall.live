@@ -41,7 +41,7 @@ export default function Gallery({ photos }: { photos: Photo[] }) {
   if (!shuffled) {
     return (
       <section className="w-full px-4 sm:px-6 pb-12 sm:pb-16">
-        <div className="w-full max-w-6xl mx-auto h-[75vh]" />
+        <div className="w-full max-w-6xl mx-auto h-[85vh]" />
       </section>
     );
   }
@@ -59,7 +59,7 @@ export default function Gallery({ photos }: { photos: Photo[] }) {
         className="relative w-full max-w-6xl mx-auto"
       >
         <div
-          className="grid grid-cols-3 gap-3 h-[75vh] overflow-hidden"
+          className="grid grid-cols-3 gap-3 h-[85vh] overflow-hidden"
           style={{ maskImage: MASK, WebkitMaskImage: MASK }}
         >
           {columns.map((col, i) => (
