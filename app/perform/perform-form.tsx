@@ -6,7 +6,7 @@ type Status = "idle" | "submitting" | "done" | "error";
 
 const inputClass =
   "w-full bg-[var(--dusk)] border rounded-md px-4 py-3 text-[var(--text)] placeholder:text-[var(--text-3)] " +
-  "focus:outline-none focus:border-[var(--aurora)] transition-colors";
+  "focus:outline-none focus:border-[var(--accent)] transition-colors";
 const inputStyle = { borderColor: "var(--line)" } as const;
 
 const labelClass = "block wh-eyebrow mb-2";
@@ -123,7 +123,7 @@ export default function PerformForm() {
       </div>
 
       {status === "error" && (
-        <p className="wh-body" style={{ color: "var(--flame)" }}>
+        <p className="wh-body" style={{ color: "var(--accent)" }}>
           Something went wrong. Try again, or message us on Discord.
         </p>
       )}

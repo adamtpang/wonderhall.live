@@ -22,13 +22,12 @@ function compute(targetMs: number): TimeLeft {
   };
 }
 
-// Glowing dusk blocks, each value lit by one of the four aurora lights.
-// Mirrors the design system's signature component (wh-block--*).
+// Quiet surface blocks; the numerals carry the one accent (see .wh-block .v).
 const BLOCKS = [
-  { label: "Days", mod: "flame" },
-  { label: "Hours", mod: "rose" },
-  { label: "Minutes", mod: "aurora" },
-  { label: "Seconds", mod: "spark" },
+  { label: "Days" },
+  { label: "Hours" },
+  { label: "Minutes" },
+  { label: "Seconds" },
 ] as const;
 
 export default function Countdown({ target = DEFAULT_TARGET }: { target?: string } = {}) {
@@ -54,10 +53,7 @@ export default function Countdown({ target = DEFAULT_TARGET }: { target?: string
             ? String(value)
             : String(value).padStart(2, "0");
         return (
-          <div
-            key={block.label}
-            className={`wh-block wh-block--${block.mod} tabular-nums`}
-          >
+          <div key={block.label} className="wh-block tabular-nums">
             <div className="k">{block.label}</div>
             <div className="v">{display}</div>
           </div>

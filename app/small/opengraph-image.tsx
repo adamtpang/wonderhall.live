@@ -15,23 +15,19 @@ export default async function Image() {
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
-          backgroundColor: "#201034",
-          backgroundImage:
-            "radial-gradient(120% 80% at 50% 0%, #2E1A4A 0%, #201034 45%, #0E0620 100%)",
+          backgroundColor: "#131011",
           fontFamily: "sans-serif",
           padding: 80,
         }}
       >
-        {/* aurora beam */}
+        {/* one small ember tick */}
         <div
           style={{
             display: "flex",
-            width: "100%",
-            height: 12,
-            marginBottom: 56,
-            borderRadius: 6,
-            background:
-              "linear-gradient(100deg, #E93D0C 0%, #EE4678 34%, #41F0C4 70%, #FBEF48 100%)",
+            width: 72,
+            height: 4,
+            marginBottom: 44,
+            background: "#E5883C",
           }}
         />
         <div
@@ -41,7 +37,7 @@ export default async function Image() {
             fontWeight: 900,
             letterSpacing: -4,
             lineHeight: 1,
-            color: "#FBF4FF",
+            color: "#ECE7E1",
           }}
         >
           wondersmall
@@ -50,7 +46,7 @@ export default async function Image() {
           style={{
             display: "flex",
             fontSize: 26,
-            color: "#C9B8E0",
+            color: "#A39D96",
             marginTop: 44,
             letterSpacing: 8,
             textTransform: "uppercase",

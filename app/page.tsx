@@ -5,24 +5,37 @@ import gallery from "./gallery-data.json";
 import { Reveal } from "./reveal";
 import Wordmark from "./wordmark";
 
-// ---- Shows (chronological; rendered latest-first) ----
+// Full-bleed hero still. Swap for any /gallery/NN.jpg (05 = crowd, 45 = fire).
+const HERO_PHOTO = "/gallery/45.jpg";
+
+// Shows in chronological order; rendered latest-first (III, II, I).
 const SHOWS = [
-  { title: "Wonderhall I", date: "18 April 2026", videoId: "My6bShyEurI" },
-  { title: "Wonderhall II", date: "20 June 2026", videoId: "YoY8NJs-ytY" },
+  { numeral: "I", title: "Wonderhall I", date: "18 April 2026", videoId: "My6bShyEurI" },
+  { numeral: "II", title: "Wonderhall II", date: "20 June 2026", videoId: "YoY8NJs-ytY" },
 ];
 const SHOW_III_DATE = "23 August 2026";
 
-// A dozen stills for the bottom grid.
-const GRID = gallery.slice(0, 12);
-
-// One standardized header row: title on the left, date on the right.
-function ShowHead({ title, date }: { title: string; date: string }) {
+// Numbered index header: big quiet numeral, title, date.
+function ShowHead({
+  numeral,
+  title,
+  date,
+}: {
+  numeral: string;
+  title: string;
+  date: string;
+}) {
   return (
-    <div className="flex items-baseline justify-between gap-4 flex-wrap mb-5">
-      <h2 className="wh-h2">{title}</h2>
-      <span className="wh-eyebrow" style={{ color: "var(--text-3)" }}>
-        {date}
+    <div className="flex items-baseline gap-4 sm:gap-6 mb-6">
+      <span className="wh-numeral shrink-0" aria-hidden="true">
+        {numeral}
       </span>
+      <div className="flex-1 min-w-0 flex items-baseline justify-between gap-3 flex-wrap">
+        <h2 className="wh-h2">{title}</h2>
+        <span className="wh-eyebrow" style={{ color: "var(--text-3)" }}>
+          {date}
+        </span>
+      </div>
     </div>
   );
 }
@@ -30,43 +43,63 @@ function ShowHead({ title, date }: { title: string; date: string }) {
 export default function Home() {
   return (
     <main className="relative z-10 flex-1 w-full">
-      {/* TITLE — CSS-only entrance so the page is never blank without JS */}
-      <section className="w-full px-4 sm:px-6 pt-12 pb-14 sm:pt-16 sm:pb-20">
-        <h1 className="wh-rise flex justify-center">
-          <Wordmark className="text-[clamp(2.25rem,12vw,13rem)]" />
-        </h1>
-        <p className="wh-rise wh-rise--late wh-eyebrow text-center mt-6">
-          Live music at Network School · Forest City
-        </p>
-      </section>
-
-      {/* PHOTOS, auto-scrolling, under the aurora beam */}
-      <section className="w-full">
-        <div className="w-full max-w-4xl mx-auto px-4 sm:px-6">
-          <div className="wh-rule mb-3" />
+      {/* HERO — a real photograph, full-bleed, wordmark over a soft scrim */}
+      <section className="relative w-full h-[88vh] min-h-[500px] flex items-end overflow-hidden">
+        <Image
+          src={HERO_PHOTO}
+          alt="Wonderhall live at Network School"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover wh-graded"
+          style={{ objectPosition: "center 28%" }}
+        />
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "linear-gradient(to bottom, rgba(19,16,17,0.45) 0%, rgba(19,16,17,0.12) 34%, rgba(19,16,17,0.82) 100%)",
+          }}
+        />
+        <div className="relative z-10 w-full px-4 sm:px-6 pb-12 sm:pb-16">
+          <div className="max-w-5xl mx-auto">
+            <h1 className="wh-rise flex">
+              <Wordmark className="text-[clamp(2.25rem,11vw,8.5rem)]" />
+            </h1>
+            <p
+              className="wh-rise wh-rise--late wh-eyebrow mt-4"
+              style={{ color: "var(--text)" }}
+            >
+              Live music at Network School · Forest City
+            </p>
+          </div>
         </div>
-        <Gallery photos={gallery} />
       </section>
 
-      {/* WONDERHALL III — next up, countdown in place of the film */}
-      <section className="w-full px-4 sm:px-6 pb-16 sm:pb-20">
+      {/* WONDERHALL III — next up, countdown */}
+      <section className="w-full px-4 sm:px-6 pt-16 sm:pt-24 pb-16 sm:pb-24">
         <Reveal>
-          <div className="w-full max-w-4xl mx-auto">
-            <ShowHead title="Wonderhall III" date={SHOW_III_DATE} />
+          <div className="w-full max-w-5xl mx-auto">
+            <p className="wh-eyebrow wh-eyebrow--accent mb-4">Next Show</p>
+            <ShowHead numeral="III" title="Wonderhall III" date={SHOW_III_DATE} />
             <Countdown />
           </div>
         </Reveal>
       </section>
 
-      {/* SHOWS — latest first (II, then I), identical format */}
+      {/* SHOWS — latest first (II, then I), same format */}
       {[...SHOWS].reverse().map((show) => (
         <section
           key={show.title}
-          className="w-full px-4 sm:px-6 pb-16 sm:pb-20"
+          className="w-full px-4 sm:px-6 pb-16 sm:pb-24"
         >
           <Reveal>
-            <div className="w-full max-w-4xl mx-auto">
-              <ShowHead title={show.title} date={show.date} />
+            <div className="w-full max-w-5xl mx-auto">
+              <ShowHead
+                numeral={show.numeral}
+                title={show.title}
+                date={show.date}
+              />
               <div className="w-full aspect-video overflow-hidden bg-black wh-frame">
                 <iframe
                   src={`https://www.youtube-nocookie.com/embed/${show.videoId}?playsinline=1&rel=0`}
@@ -82,32 +115,12 @@ export default function Home() {
         </section>
       ))}
 
-      {/* MORE PHOTOS — a still grid at the bottom */}
-      <section className="w-full px-4 sm:px-6 pb-20 sm:pb-24">
-        <Reveal>
-          <div className="w-full max-w-4xl mx-auto">
-            <div className="wh-rule mb-6" />
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-              {GRID.map((photo, i) => (
-                <div
-                  key={photo.src}
-                  className="overflow-hidden rounded-md"
-                  style={{ boxShadow: "inset 0 0 0 1px var(--line)" }}
-                >
-                  <Image
-                    src={photo.src}
-                    width={photo.width}
-                    height={photo.height}
-                    alt=""
-                    sizes="(max-width: 640px) 50vw, 33vw"
-                    className="w-full h-full object-cover aspect-square block"
-                    loading={i < 3 ? "eager" : "lazy"}
-                  />
-                </div>
-              ))}
-            </div>
-          </div>
-        </Reveal>
+      {/* MORE PHOTOS — the slow marquee, edge to edge */}
+      <section className="w-full pb-6">
+        <div className="w-full max-w-5xl mx-auto px-4 sm:px-6 mb-4">
+          <div className="wh-rule" />
+        </div>
+        <Gallery photos={gallery} />
       </section>
 
       {/* FOOTER */}
@@ -116,7 +129,7 @@ export default function Home() {
         style={{ borderTop: "1px solid var(--line)" }}
       >
         <p
-          className="wh-eyebrow max-w-4xl mx-auto"
+          className="wh-eyebrow max-w-5xl mx-auto"
           style={{ color: "var(--text-3)" }}
         >
           © 2026 Wonderhall

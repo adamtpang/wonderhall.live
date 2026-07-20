@@ -2,15 +2,14 @@
 @source "./";
 
 /* ============================================================
-   WONDERHALL II — "COSMIC DREAM" design system
-   A deep purple-black night, a luminous aurora beam, glowing
-   stars and painterly grain — set in Archivo Black.
-   Palette: e93d0c · ee4678 · 41f0c4 · fbef48 on a 201034 night.
-   Source of truth: claude.ai/design · colors_and_type.css
+   WONDERHALL — editorial dark system
+   Near-neutral dark canvas, one soft-white voice, one restrained
+   warm accent. The photography and the recap films carry the color;
+   the UI stays quiet. Set in Archivo Black.
    ============================================================ */
 
 @theme inline {
-  --color-background: var(--night);
+  --color-background: var(--bg);
   --color-foreground: var(--text);
   --font-sans: var(--font-archivo);
   --font-display: var(--font-archivo-black);
@@ -19,83 +18,54 @@
 :root {
   color-scheme: dark;
 
-  /* ---- THE NIGHT — deep purple canvas, void → raised surface ---- */
-  --void: #0e0620; /* darkest — page edges, deepest ground */
-  --night: #201034; /* the canvas base — dominant surface */
-  --dusk: #2e1a4a; /* raised panels / cards */
-  --haze: #3d2660; /* hover lift / hairline-light surface */
-
-  /* ---- THE LIGHT — the four luminous accents (the aurora) ---- */
-  --flame: #e93d0c; /* red-orange — the heat, primary glow */
-  --rose: #ee4678; /* pink — the romance */
-  --aurora: #41f0c4; /* mint/teal — the cool beam, "go" */
-  --spark: #fbef48; /* yellow — the stars, highlights */
-
-  /* ---- Text on night (warm off-whites & lavenders) ---- */
-  --text: #fbf4ff; /* primary — warm white with a violet hint */
-  --text-2: #c9b8e0; /* secondary — soft lavender */
-  --text-3: #8e7aae; /* tertiary / captions / labels */
-  --line: rgba(255, 255, 255, 0.1); /* hairline on night */
+  /* ---- Canvas & surfaces (near-neutral, a whisper warm) ---- */
+  --bg: #131011; /* the canvas, near-black */
+  --surface: #1c181a; /* raised panels / inputs */
+  --surface-2: #241f22; /* hover lift */
+  --line: rgba(255, 255, 255, 0.09); /* hairline */
   --line-2: rgba(255, 255, 255, 0.05); /* faintest divider */
 
-  /* ---- Signature gradients — the aurora is the hero ---- */
-  --grad-aurora: linear-gradient(100deg, #e93d0c 0%, #ee4678 34%, #41f0c4 70%, #fbef48 100%);
-  --grad-beam: linear-gradient(180deg, #fbef48 0%, #e93d0c 28%, #ee4678 55%, #41f0c4 100%);
-  --grad-night: radial-gradient(120% 80% at 50% 0%, #2e1a4a 0%, #201034 45%, #0e0620 100%);
-  --glow-veil: radial-gradient(
-    60% 50% at 50% 38%,
-    rgba(65, 240, 196, 0.18) 0%,
-    rgba(233, 61, 12, 0.14) 40%,
-    rgba(238, 70, 120, 0.1) 60%,
-    rgba(14, 6, 32, 0) 78%
-  );
+  /* ---- Type (soft warm white, never pure) ---- */
+  --text: #ece7e1; /* primary */
+  --text-2: #a39d96; /* secondary */
+  --text-3: #6b6560; /* tertiary / labels */
+  --ink: #131011; /* text on the accent fill */
 
-  /* ---- Glow shadows (luminous — the only shadow system) ---- */
-  --glow-flame: 0 0 40px -6px rgba(233, 61, 12, 0.55);
-  --glow-aurora: 0 0 40px -6px rgba(65, 240, 196, 0.5);
-  --glow-rose: 0 0 36px -6px rgba(238, 70, 120, 0.5);
-  --glow-spark: 0 0 24px 2px rgba(251, 239, 72, 0.65);
-  --glow-card: 0 24px 70px -28px rgba(0, 0, 0, 0.7),
-    0 0 60px -30px rgba(65, 240, 196, 0.35);
-
-  /* ---- Painterly grain (SVG noise, tiled). Overlay ~8–12% on dark fills. ---- */
-  --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  /* ---- The one accent: a warm ember, used sparingly ---- */
+  --accent: #e5883c;
+  /* legacy alias so any stray reference stays on-system */
+  --dusk: var(--surface);
 
   /* ---- Type families (wired to next/font/local variables) ---- */
   --font-display: var(--font-archivo-black), "Arial Black", system-ui, sans-serif;
   --font-sans: var(--font-archivo), system-ui, -apple-system, BlinkMacSystemFont,
     "Segoe UI", Helvetica, Arial, sans-serif;
 
-  --track-hero: -0.025em;
+  --track-hero: -0.03em;
   --track-h2: -0.02em;
   --track-h3: -0.01em;
-  --track-eyebrow: 0.3em;
-  --track-block: 0.18em;
+  --track-eyebrow: 0.28em;
+  --track-block: 0.16em;
 
-  /* ---- Radii ---- */
   --radius-0: 0px;
-  --radius-sm: 4px;
-  --radius-md: 8px;
-  --radius-lg: 16px; /* soft glowing cards */
-  --radius-pill: 999px;
+  --radius-sm: 3px;
+  --radius-md: 4px;
 
-  /* ---- Spacing (8px grid) ---- */
   --sp-1: 8px;
   --sp-2: 16px;
   --sp-3: 24px;
   --sp-4: 48px;
   --sp-5: 72px;
 
-  --shadow: var(--glow-card);
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
 
-  --background: var(--night);
+  --background: var(--bg);
   --foreground: var(--text);
 }
 
 html,
 body {
-  background: var(--night);
+  background: var(--bg);
   color: var(--text);
 }
 
@@ -106,56 +76,17 @@ body {
 }
 
 ::selection {
-  background: var(--spark);
-  color: var(--night);
+  background: var(--accent);
+  color: var(--ink);
+}
+
+/* ---- One consistent grade so the mixed photo set reads intentional ---- */
+.wh-graded {
+  filter: contrast(1.05) saturate(0.9) brightness(0.97);
 }
 
 /* ============================================================
-   COSMIC BACKDROP — fixed layers behind all content (z-10)
-   ============================================================ */
-.wh-backdrop {
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  background: var(--grad-night);
-}
-.wh-backdrop::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: var(--glow-veil);
-}
-.wh-grain {
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  background-image: var(--grain);
-  background-size: 160px 160px;
-  opacity: 0.1;
-  mix-blend-mode: overlay;
-}
-.wh-starfield {
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  overflow: hidden;
-}
-.wh-dot {
-  position: absolute;
-  border-radius: 50%;
-  background: var(--spark);
-}
-.wh-sparkle {
-  position: absolute;
-  color: var(--spark);
-  filter: drop-shadow(0 0 6px rgba(251, 239, 72, 0.9));
-}
-
-/* ============================================================
-   SEMANTIC TYPE
+   TYPE
    ============================================================ */
 .wh-hero {
   font-family: var(--font-display);
@@ -184,46 +115,30 @@ body {
 .wh-lead {
   font-family: var(--font-sans);
   font-weight: 500;
-  font-size: clamp(1.125rem, 2.2vw, 1.3rem);
+  font-size: clamp(1.0625rem, 2vw, 1.2rem);
   line-height: 1.55;
-  color: var(--text);
+  color: var(--text-2);
 }
 .wh-body {
   font-family: var(--font-sans);
   font-weight: 400;
   font-size: 1rem;
-  line-height: 1.6;
+  line-height: 1.65;
   color: var(--text-2);
 }
 .wh-eyebrow {
   font-family: var(--font-sans);
   font-weight: 700;
   text-transform: uppercase;
-  font-size: 0.8125rem;
+  font-size: 0.75rem;
   letter-spacing: var(--track-eyebrow);
-  color: var(--aurora);
+  color: var(--text-2);
+}
+.wh-eyebrow--accent {
+  color: var(--accent);
 }
 
-/* ---- Aurora-gradient display (the type IS the light) ---- */
-.wh-aurora-text {
-  background: var(--grad-aurora);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-
-/* ---- Oversized poster numeral (the roman numeral as a graphic) ---- */
-.wh-numeral {
-  font-family: var(--font-display);
-  display: block;
-  font-size: clamp(5rem, 22vw, 15rem);
-  line-height: 0.78;
-  letter-spacing: -0.04em;
-  color: var(--text);
-}
-
-/* ---- The wordmark: each letter cycles the four lights, softly glowing.
-   Cycle: Flame → Rose → Aurora → Spark (fixed) ---- */
+/* ---- The wordmark: one solid soft-white voice (no rainbow, no glow) ---- */
 .wh-wordmark {
   font-family: var(--font-display);
   text-transform: uppercase;
@@ -231,72 +146,52 @@ body {
   letter-spacing: var(--track-hero);
   display: inline-flex;
   white-space: nowrap;
+  color: var(--text);
 }
 .wh-wordmark > span {
-  transition: text-shadow 0.3s var(--ease);
-}
-.wh-wordmark > span:nth-child(4n + 1) {
-  color: var(--flame);
-  text-shadow: 0 0 28px rgba(233, 61, 12, 0.55);
-}
-.wh-wordmark > span:nth-child(4n + 2) {
-  color: var(--rose);
-  text-shadow: 0 0 28px rgba(238, 70, 120, 0.55);
-}
-.wh-wordmark > span:nth-child(4n + 3) {
-  color: var(--aurora);
-  text-shadow: 0 0 28px rgba(65, 240, 196, 0.55);
-}
-.wh-wordmark > span:nth-child(4n + 4) {
-  color: var(--spark);
-  text-shadow: 0 0 28px rgba(251, 239, 72, 0.55);
+  color: inherit;
 }
 .wh-wordmark--ink > span {
-  color: var(--text) !important;
-  text-shadow: none !important;
+  color: var(--ink) !important;
+}
+
+/* ---- Oversized poster numeral (the roman numeral as an index mark) ---- */
+.wh-numeral {
+  font-family: var(--font-display);
+  display: block;
+  font-size: clamp(3rem, 9vw, 6.5rem);
+  line-height: 0.82;
+  letter-spacing: -0.04em;
+  color: var(--text-3);
 }
 
 /* ============================================================
-   SIGNATURE COMPONENT — glowing fact blocks
+   SIGNATURE COMPONENT — quiet fact blocks (the countdown)
    ============================================================ */
 .wh-block {
-  padding: 22px 22px 24px;
-  border-radius: var(--radius-md);
-  color: var(--text);
-  background: var(--dusk);
+  padding: 20px 16px 22px;
+  border-radius: var(--radius-sm);
+  background: var(--surface);
   box-shadow: inset 0 0 0 1px var(--line);
-  position: relative;
-  overflow: hidden;
 }
 .wh-block .k {
   font-family: var(--font-sans);
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: var(--track-block);
-  font-size: 0.75rem;
+  font-size: 0.6875rem;
   color: var(--text-3);
 }
 .wh-block .v {
   font-family: var(--font-display);
   text-transform: uppercase;
-  font-size: 2rem;
+  font-size: 2.25rem;
   line-height: 1;
   margin-top: 8px;
-}
-.wh-block--flame .v {
-  color: var(--flame);
-}
-.wh-block--rose .v {
-  color: var(--rose);
-}
-.wh-block--aurora .v {
-  color: var(--aurora);
-}
-.wh-block--spark .v {
-  color: var(--spark);
+  color: var(--accent);
 }
 
-/* Compact step so "MINUTES" / "SECONDS" fit a 4-up grid on phones. */
+/* Compact step so labels fit a 4-up grid on phones. */
 @media (width < 40rem) {
   .wh-block {
     padding: 14px 8px 16px;
@@ -306,97 +201,72 @@ body {
     letter-spacing: 0.08em;
   }
   .wh-block .v {
-    font-size: 1.5rem;
+    font-size: 1.625rem;
   }
 }
 
-/* ---- Chips (pill) ---- */
+/* ---- Small tracked label chip (outline, not a neon pill) ---- */
 .wh-chip {
-  font-family: var(--font-display);
+  font-family: var(--font-sans);
+  font-weight: 700;
   text-transform: uppercase;
-  font-size: 1rem;
-  color: var(--night);
-  background: var(--spark);
-  padding: 7px 16px;
-  border-radius: var(--radius-pill);
+  letter-spacing: 0.14em;
+  font-size: 0.6875rem;
+  color: var(--text-2);
+  background: transparent;
+  box-shadow: inset 0 0 0 1px var(--line);
+  padding: 6px 11px;
+  border-radius: var(--radius-sm);
   display: inline-block;
 }
-.wh-chip--flame {
-  background: var(--flame);
-  color: var(--text);
-}
-.wh-chip--rose {
-  background: var(--rose);
-  color: var(--text);
-}
-.wh-chip--aurora {
-  background: var(--aurora);
-  color: var(--night);
-}
 
-/* ---- Buttons (pill, glowing) ---- */
+/* ---- Buttons: squared, tracked, one accent ---- */
 .wh-btn {
   font-family: var(--font-sans);
   font-weight: 700;
-  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 0.8125rem;
   border: none;
-  border-radius: var(--radius-pill);
-  padding: 13px 26px;
+  border-radius: var(--radius-sm);
+  padding: 14px 24px;
   cursor: pointer;
-  background: var(--flame);
-  color: var(--text);
-  box-shadow: var(--glow-flame);
-  transition: transform 0.2s var(--ease), box-shadow 0.3s var(--ease);
+  background: var(--accent);
+  color: var(--ink);
+  transition: opacity 0.2s var(--ease);
 }
 .wh-btn:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 0 56px -4px rgba(233, 61, 12, 0.7);
-}
-.wh-btn--aurora {
-  background: var(--aurora);
-  color: var(--night);
-  box-shadow: var(--glow-aurora);
-}
-.wh-btn--aurora:hover {
-  box-shadow: 0 0 56px -4px rgba(65, 240, 196, 0.7);
+  opacity: 0.9;
 }
 .wh-btn--ghost {
   background: transparent;
   color: var(--text);
-  box-shadow: inset 0 0 0 1.5px var(--line);
+  box-shadow: inset 0 0 0 1px var(--line);
 }
 .wh-btn--ghost:hover {
-  box-shadow: inset 0 0 0 1.5px var(--aurora);
-  transform: translateY(-1px);
+  box-shadow: inset 0 0 0 1px var(--text);
 }
 
-/* ---- The aurora rule (a luminous gradient hairline / beam) ---- */
+/* ---- Hairline rule (editorial divider) ---- */
 .wh-rule {
-  height: 4px;
-  border-radius: 2px;
-  background: var(--grad-aurora);
-  box-shadow: var(--glow-aurora);
+  height: 1px;
+  background: var(--line);
+  border: none;
 }
 
-/* ---- A glowing framed panel (raised dusk card / video frame) ---- */
-.wh-panel {
-  background: var(--dusk);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--glow-card);
-}
+/* ---- A clean hairline frame for the recap films (no glow) ---- */
 .wh-frame {
-  border-radius: var(--radius-lg);
-  box-shadow: inset 0 0 0 1px var(--line), var(--glow-card);
+  border-radius: var(--radius-sm);
+  box-shadow: inset 0 0 0 1px var(--line);
 }
 
 /* ============================================================
-   CSS-only entrance for above-the-fold / critical content
-   (works without JS, unlike the framer-motion Reveal wrappers)
+   CSS-only entrance for above-the-fold content (works without JS)
    ============================================================ */
 @keyframes wh-rise {
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(16px);
   }
   to {
     opacity: 1;
@@ -404,10 +274,10 @@ body {
   }
 }
 .wh-rise {
-  animation: wh-rise 0.7s var(--ease) both;
+  animation: wh-rise 0.8s var(--ease) both;
 }
 .wh-rise--late {
-  animation-delay: 0.12s;
+  animation-delay: 0.14s;
 }
 @media (prefers-reduced-motion: reduce) {
   .wh-rise,
@@ -416,27 +286,27 @@ body {
   }
 }
 
-/* ---- Gallery pause/play toggle (WCAG 2.2.2 control for the marquee) ---- */
+/* ---- Gallery pause/play toggle (WCAG 2.2.2 control) ---- */
 .wh-gallery-toggle {
   font-family: var(--font-sans);
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: var(--track-block);
   font-size: 0.6875rem;
-  padding: 10px 16px;
+  padding: 9px 15px;
   border: none;
-  border-radius: var(--radius-pill);
-  background: rgba(14, 6, 32, 0.6);
+  border-radius: var(--radius-sm);
+  background: rgba(19, 16, 17, 0.72);
   color: var(--text);
-  box-shadow: inset 0 0 0 1.5px var(--line);
+  box-shadow: inset 0 0 0 1px var(--line);
   cursor: pointer;
   backdrop-filter: blur(6px);
   transition: box-shadow 0.3s var(--ease);
 }
 .wh-gallery-toggle:hover {
-  box-shadow: inset 0 0 0 1.5px var(--aurora);
+  box-shadow: inset 0 0 0 1px var(--text);
 }
 .wh-gallery-toggle:focus-visible {
-  outline: 2px solid var(--aurora);
+  outline: 2px solid var(--accent);
   outline-offset: 2px;
 }

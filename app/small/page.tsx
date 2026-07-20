@@ -41,7 +41,7 @@ export default function Small() {
       <RevealNow delay={0.15}>
         <p
           className="wh-eyebrow mt-6 text-center"
-          style={{ color: "var(--flame)" }}
+          style={{ color: "var(--accent)" }}
         >
           A Tiny Desk Concert
         </p>

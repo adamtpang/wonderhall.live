@@ -66,7 +66,7 @@ export default function Gallery({ photos }: { photos: Photo[] }) {
             <Column
               key={i}
               photos={col}
-              duration={55 + i * 12}
+              duration={95 + i * 22}
               scrolling={animated && !paused}
               loop={animated}
             />
@@ -130,7 +130,7 @@ function Column({
               height={photo.height}
               alt=""
               sizes="(max-width: 768px) 33vw, (max-width: 1280px) 30vw, 380px"
-              className="w-full h-auto block"
+              className="w-full h-auto block wh-graded"
               loading={j < 6 ? "eager" : "lazy"}
             />
           </div>

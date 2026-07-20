@@ -2,7 +2,6 @@ import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import { PostHogProvider } from "./providers";
-import Stars from "./stars";
 
 // Self-hosted fonts. next/font/google fetches from Google Fonts at BUILD
 // time, which fails the whole build on any transient network hiccup
@@ -59,9 +58,9 @@ export const metadata: Metadata = {
   },
 };
 
-// Cosmic night: match the mobile browser chrome to the canvas.
+// Match the mobile browser chrome to the canvas.
 export const viewport: Viewport = {
-  themeColor: "#201034",
+  themeColor: "#131011",
   colorScheme: "dark",
 };
 
@@ -82,10 +81,6 @@ export default function RootLayout({
         <link rel="preconnect" href="https://luma.com" />
       </head>
       <body className="min-h-full flex flex-col">
-        {/* Cosmic backdrop: night gradient + aurora veil, grain, starfield */}
-        <div aria-hidden className="wh-backdrop" />
-        <div aria-hidden className="wh-grain" />
-        <Stars />
         <PostHogProvider>{children}</PostHogProvider>
       </body>
     </html>
