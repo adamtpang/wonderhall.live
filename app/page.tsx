@@ -6,19 +6,27 @@ import { Reveal } from "./reveal";
 import Wordmark from "./wordmark";
 
 // Shows in chronological order; rendered reverse-chronological (II, then I).
+// `start` = seconds into the recap where the event actually begins.
 const SHOWS = [
-  { numeral: "I", title: "Wonderhall I", date: "18 April 2026", videoId: "My6bShyEurI" },
-  { numeral: "II", title: "Wonderhall II", date: "20 June 2026", videoId: "YoY8NJs-ytY" },
+  { numeral: "I", title: "Wonderhall I", date: "18 April 2026", videoId: "My6bShyEurI", start: 140 },
+  { numeral: "II", title: "Wonderhall II", date: "20 June 2026", videoId: "YoY8NJs-ytY", start: 460 },
 ];
 const SHOW_III_DATE = "23 August 2026";
+
+// PLACEHOLDER: still the Wonderhall II (June) event. Swap for the Wonderhall
+// III Luma event ID once it exists.
+const LUMA_EVENT_ID = "47q03ybr";
+
+// Featured Instagram post, embedded under the headline.
+const IG_POST = "DajcoZdPQc4";
 
 // A dozen stills for the bottom grid.
 const GRID = gallery.slice(0, 12);
 
-// Credits — linked to each person's site. Leave url empty for plain text.
+// Credits — order matches the posters. Leave url empty for plain text.
 const CREDITS = [
+  { name: "Maanasa", url: "https://diaryofmaanasa.com" },
   { name: "Adam Pangelinan", url: "https://adampang.com" },
-  { name: "Maanasa", url: "" }, // TODO: add Maanasa's website URL
 ];
 
 // Numbered index header: big quiet numeral, title, date.
@@ -50,13 +58,31 @@ export default function Home() {
   return (
     <main className="relative z-10 flex-1 w-full">
       {/* HEADLINE — the wordmark, CSS-only entrance (never blank without JS) */}
-      <section className="w-full px-4 sm:px-6 pt-16 pb-10 sm:pt-24 sm:pb-14">
+      <section className="w-full px-4 sm:px-6 pt-16 pb-8 sm:pt-24 sm:pb-10">
         <h1 className="wh-rise flex justify-center">
           <Wordmark className="text-[clamp(2.5rem,13vw,11rem)]" />
         </h1>
         <p className="wh-rise wh-rise--late wh-eyebrow text-center mt-6">
           Live music at Network School · Forest City
         </p>
+      </section>
+
+      {/* FEATURED — Instagram post, right under the headline */}
+      <section className="w-full px-4 sm:px-6 pb-14 sm:pb-20">
+        <div
+          className="w-full max-w-[400px] mx-auto overflow-hidden rounded-sm bg-white"
+          style={{ boxShadow: "inset 0 0 0 1px var(--line)" }}
+        >
+          <iframe
+            src={`https://www.instagram.com/p/${IG_POST}/embed`}
+            title="Wonderhall on Instagram"
+            className="w-full block"
+            style={{ height: 640, border: "none" }}
+            scrolling="no"
+            allowFullScreen
+            loading="lazy"
+          />
+        </div>
       </section>
 
       {/* PHOTO CAROUSEL */}
@@ -67,7 +93,7 @@ export default function Home() {
         <Gallery photos={gallery} />
       </section>
 
-      {/* SHOWS — reverse chronological: II, then I */}
+      {/* SHOWS — reverse chronological: II, then I. Cropped to the event start. */}
       {[...SHOWS].reverse().map((show) => (
         <section
           key={show.title}
@@ -82,7 +108,7 @@ export default function Home() {
               />
               <div className="w-full aspect-video overflow-hidden bg-black wh-frame">
                 <iframe
-                  src={`https://www.youtube-nocookie.com/embed/${show.videoId}?playsinline=1&rel=0`}
+                  src={`https://www.youtube-nocookie.com/embed/${show.videoId}?start=${show.start}&playsinline=1&rel=0`}
                   title={`${show.title} — ${show.date}`}
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                   allowFullScreen
@@ -95,13 +121,24 @@ export default function Home() {
         </section>
       ))}
 
-      {/* WONDERHALL III — the next one, countdown, last of the shows */}
+      {/* WONDERHALL III — the next one: countdown + RSVP */}
       <section className="w-full px-4 sm:px-6 pb-16 sm:pb-24">
         <Reveal>
           <div className="w-full max-w-5xl mx-auto">
             <p className="wh-eyebrow wh-eyebrow--accent mb-4">Next Show</p>
             <ShowHead numeral="III" title="Wonderhall III" date={SHOW_III_DATE} />
             <Countdown />
+            <div className="mt-8 w-full overflow-hidden rounded-sm bg-white wh-frame">
+              <iframe
+                src={`https://luma.com/embed/event/${LUMA_EVENT_ID}/simple`}
+                title="Wonderhall III RSVP"
+                width="100%"
+                height={520}
+                loading="lazy"
+                allowFullScreen
+                className="w-full block"
+              />
+            </div>
           </div>
         </Reveal>
       </section>
