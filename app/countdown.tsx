@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 
-// Wonderhall III, Sun 23 August 2026, 7:30pm Malaysia time (UTC+8).
+// Wonderhall III, Sun 23 August 2026, 7:30pm local time (UTC+8).
 const DEFAULT_TARGET = "2026-08-23T19:30:00+08:00";
 
 type TimeLeft = {

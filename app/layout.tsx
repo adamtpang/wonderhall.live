@@ -27,19 +27,17 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://wonderhall.live"),
   title: "Wonderhall",
   description:
-    "A live music night at Network School in Forest City, Malaysia. Next show: Wonderhall III, Sunday 23 August 2026.",
+    "A live music night at Network School. Next show: Wonderhall III, Sunday 23 August 2026.",
   keywords: [
     "Wonderhall",
     "live music",
     "Network School",
-    "Forest City",
-    "Malaysia",
     "concert",
   ],
   openGraph: {
     title: "Wonderhall",
     description:
-      "A live music night at Network School in Forest City, Malaysia. Next show: Wonderhall III, Sunday 23 August 2026.",
+      "A live music night at Network School. Next show: Wonderhall III, Sunday 23 August 2026.",
     url: "https://wonderhall.live",
     siteName: "Wonderhall",
     locale: "en_US",
@@ -49,7 +47,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Wonderhall",
     description:
-      "A live music night at Network School in Forest City, Malaysia. Next show: Wonderhall III, Sunday 23 August 2026.",
+      "A live music night at Network School. Next show: Wonderhall III, Sunday 23 August 2026.",
     creator: "@adamtpang",
   },
   robots: {

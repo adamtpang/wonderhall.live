@@ -59,7 +59,7 @@ export default function Home() {
           <Wordmark className="text-[clamp(2.5rem,13vw,11rem)]" />
         </h1>
         <p className="wh-rise wh-rise--late wh-eyebrow text-center mt-6">
-          Live music at Network School · Forest City
+          Live music at Network School
         </p>
       </section>
 
@@ -156,7 +156,7 @@ export default function Home() {
       >
         <div className="max-w-5xl mx-auto flex flex-wrap items-center justify-between gap-x-6 gap-y-2">
           <p className="wh-eyebrow" style={{ color: "var(--text-3)" }}>
-            © 2026 Wonderhall · Forest City
+            © 2026 Wonderhall
           </p>
           <p className="wh-eyebrow" style={{ color: "var(--text-3)" }}>
             Created by{" "}

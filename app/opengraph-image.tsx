@@ -2,7 +2,7 @@ import { ImageResponse } from "next/og";
 
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
-export const alt = "Wonderhall, live music at Network School, Forest City";
+export const alt = "Wonderhall, live music at Network School";
 
 export default async function Image() {
   return new ImageResponse(
@@ -43,7 +43,7 @@ export default async function Image() {
           WONDERHALL
         </div>
         <div style={{ display: "flex", fontSize: 27, letterSpacing: 2, color: "#A39D96", marginTop: 40 }}>
-          Live music at Network School · Forest City
+          Live music at Network School
         </div>
       </div>
     ),

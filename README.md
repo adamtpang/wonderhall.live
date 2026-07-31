@@ -1,6 +1,6 @@
 # wonderhall.live
 
-The site for **Wonderhall** — a live music night at Network School, Forest City, Malaysia. Every even month, performers from across the campus take the Level 2 ballroom for one ninety-minute set.
+The site for **Wonderhall** — a live music night at Network School. Every even month, performers from across the campus take the Level 2 ballroom for one ninety-minute set.
 
 Live at [wonderhall.live](https://wonderhall.live).
 
