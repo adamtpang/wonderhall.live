@@ -22,7 +22,7 @@ const IG_POST = "DajcoZdPQc4";
 // Credits — order matches the posters. Leave url empty for plain text.
 const CREDITS = [
   { name: "Maanasa", url: "https://diaryofmaanasa.com" },
-  { name: "Adam Pangelinan", url: "https://adampang.com" },
+  { name: "Adam", url: "https://adampang.com" },
 ];
 
 // Numbered index header: big quiet numeral, title, date.
