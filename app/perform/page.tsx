@@ -52,7 +52,7 @@ export default function Perform() {
           <div className="mt-12 text-center">
             <a
               href="/"
-              className="wh-eyebrow inline-block transition-colors hover:text-[var(--aurora)]"
+              className="wh-eyebrow inline-block transition-colors hover:text-[var(--accent)]"
               style={{ color: "var(--text-3)" }}
             >
               ← Wonderhall

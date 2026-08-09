@@ -2,7 +2,6 @@ import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import { PostHogProvider } from "./providers";
-import Stars from "./stars";
 
 // Self-hosted fonts. next/font/google fetches from Google Fonts at BUILD
 // time, which fails the whole build on any transient network hiccup
@@ -28,19 +27,17 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://wonderhall.live"),
   title: "Wonderhall",
   description:
-    "A live music night at Network School in Forest City, Malaysia. Next show: Wonderhall III, Sunday 23 August 2026.",
+    "A live music night at Network School. Next show: Wonderhall III, Sunday 23 August 2026.",
   keywords: [
     "Wonderhall",
     "live music",
     "Network School",
-    "Forest City",
-    "Malaysia",
     "concert",
   ],
   openGraph: {
     title: "Wonderhall",
     description:
-      "A live music night at Network School in Forest City, Malaysia. Next show: Wonderhall III, Sunday 23 August 2026.",
+      "A live music night at Network School. Next show: Wonderhall III, Sunday 23 August 2026.",
     url: "https://wonderhall.live",
     siteName: "Wonderhall",
     locale: "en_US",
@@ -50,7 +47,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Wonderhall",
     description:
-      "A live music night at Network School in Forest City, Malaysia. Next show: Wonderhall III, Sunday 23 August 2026.",
+      "A live music night at Network School. Next show: Wonderhall III, Sunday 23 August 2026.",
     creator: "@adamtpang",
   },
   robots: {
@@ -59,9 +56,9 @@ export const metadata: Metadata = {
   },
 };
 
-// Cosmic night: match the mobile browser chrome to the canvas.
+// Match the mobile browser chrome to the canvas.
 export const viewport: Viewport = {
-  themeColor: "#201034",
+  themeColor: "#131011",
   colorScheme: "dark",
 };
 
@@ -80,12 +77,9 @@ export default function RootLayout({
         <link rel="preconnect" href="https://www.youtube.com" />
         <link rel="preconnect" href="https://i.ytimg.com" />
         <link rel="preconnect" href="https://luma.com" />
+        <link rel="preconnect" href="https://www.instagram.com" />
       </head>
       <body className="min-h-full flex flex-col">
-        {/* Cosmic backdrop: night gradient + aurora veil, grain, starfield */}
-        <div aria-hidden className="wh-backdrop" />
-        <div aria-hidden className="wh-grain" />
-        <Stars />
         <PostHogProvider>{children}</PostHogProvider>
       </body>
     </html>
