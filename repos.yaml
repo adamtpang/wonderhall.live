@@ -1,0 +1,10 @@
+# repos.yaml v0 — see github.com/adamtpang/repo-connect
+repo: wonderhall.live
+is: The site for Wonderhall, a live music night at Network School. Recaps of each show (I, II), a countdown to the next, and a photo gallery.
+url: https://wonderhall.live
+
+stack: [nextjs, react, typescript, tailwindcss]
+
+kin:
+  - repo: pangaea.blog
+    why: Cataloged as project #33 in pangaea.blog's "1000 apps" pillar (src/content/apps/wonderhall-live.md), which is the working home for every app/project Adam has shipped or is building.
