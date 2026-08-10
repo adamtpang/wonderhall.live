@@ -68,5 +68,41 @@ order and caption drafts per clip.
 - [x] Handle checked across platforms
 - [x] Profile picture rendered
 - [x] Bio copy drafted
+- [x] First 6 reels cut from source footage (vertical 9:16, blurred-background
+      reframe so wide crowd shots keep their edges) — sent directly, also in
+      Descript: https://web.descript.com/1caa9d9b-60d9-412d-a293-fca08f04b8fe
 - [ ] Accounts created (you)
-- [ ] First reels cut from source footage (in progress)
+- [ ] Post the first batch once accounts exist
+
+## First batch — captions & hashtags
+
+Base hashtag set for every post: `#wonderhall #networkschool #livemusic`
+
+1. **wh1-performance.mp4** (30s, solo performer, Wonderhall I)
+   > A quiet room, a mic, a song. Wonderhall I.
+   > #wonderhall #networkschool #livemusic #openmic
+
+2. **wh1-dance.mp4** (45s, dance floor, Wonderhall I)
+   > This is what "we came to bring beauty back" looks like.
+   > #wonderhall #networkschool #livemusic #dancefloor
+
+3. **wh1-crowd.mp4** (30s, crowd close-up, Wonderhall I)
+   > The room after the last song.
+   > #wonderhall #networkschool #livemusic
+
+4. **wh2-stage-blue.mp4** (30s, blue-lit band, Wonderhall II)
+   > Wonderhall II. The sound grew.
+   > #wonderhall #networkschool #livemusic #liveband
+
+5. **wh2-band-red.mp4** (35s, red-lit crowd + band, Wonderhall II)
+   > Full room, full light, full volume.
+   > #wonderhall #networkschool #livemusic #concert
+
+6. **wh2-crowd-hands.mp4** (30s, packed crowd hands up, Wonderhall II)
+   > Wonderhall II, from the middle of it.
+   > #wonderhall #networkschool #livemusic #crowd
+
+Suggested posting order: alternate WH I / WH II so the feed doesn't read as
+"old show first" — e.g. 4, 1, 6, 2, 5, 3 over ~2 weeks at the 2-3/week
+cadence above. Close the batch with a "Wonderhall III · 23 August" story/post
+pointing to wonderhall.live once the accounts have an audience.
