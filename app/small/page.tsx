@@ -19,6 +19,7 @@ export const metadata: Metadata = {
     creator: "@adamtpang",
   },
   robots: { index: true, follow: true },
+  alternates: { canonical: "https://wonderhall.live/small" },
 };
 
 export default function Small() {

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { RevealNow } from "../reveal";
 import Wordmark from "../wordmark";
 import PerformForm from "./perform-form";
@@ -23,6 +24,7 @@ export const metadata: Metadata = {
     creator: "@adamtpang",
   },
   robots: { index: true, follow: true },
+  alternates: { canonical: "https://wonderhall.live/perform" },
 };
 
 export default function Perform() {
@@ -50,13 +52,13 @@ export default function Perform() {
 
         <RevealNow delay={0.45}>
           <div className="mt-12 text-center">
-            <a
+            <Link
               href="/"
               className="wh-eyebrow inline-block transition-colors hover:text-[var(--accent)]"
               style={{ color: "var(--text-3)" }}
             >
               ← Wonderhall
-            </a>
+            </Link>
           </div>
         </RevealNow>
       </div>

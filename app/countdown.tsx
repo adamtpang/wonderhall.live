@@ -35,9 +35,12 @@ export default function Countdown({ target = DEFAULT_TARGET }: { target?: string
   const [t, setT] = useState<TimeLeft | null>(null);
 
   useEffect(() => {
-    setT(compute(targetMs));
+    const initial = window.setTimeout(() => setT(compute(targetMs)), 0);
     const id = setInterval(() => setT(compute(targetMs)), 1000);
-    return () => clearInterval(id);
+    return () => {
+      clearTimeout(initial);
+      clearInterval(id);
+    };
   }, [targetMs]);
 
   const values = [t?.days, t?.hours, t?.minutes, t?.seconds];

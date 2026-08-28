@@ -2,6 +2,11 @@ import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import { PostHogProvider } from "./providers";
+import {
+  SITE_DESCRIPTION,
+  SITE_TITLE,
+  SITE_URL,
+} from "./site-data.mjs";
 
 // Self-hosted fonts. next/font/google fetches from Google Fonts at BUILD
 // time, which fails the whole build on any transient network hiccup
@@ -24,10 +29,12 @@ const archivoBlack = localFont({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://wonderhall.live"),
-  title: "Wonderhall",
-  description:
-    "A live music night at Network School. Next show: Wonderhall III, Sunday 23 August 2026.",
+  metadataBase: new URL(SITE_URL),
+  title: SITE_TITLE,
+  description: SITE_DESCRIPTION,
+  alternates: {
+    canonical: `${SITE_URL}/`,
+  },
   keywords: [
     "Wonderhall",
     "live music",
@@ -35,19 +42,17 @@ export const metadata: Metadata = {
     "concert",
   ],
   openGraph: {
-    title: "Wonderhall",
-    description:
-      "A live music night at Network School. Next show: Wonderhall III, Sunday 23 August 2026.",
-    url: "https://wonderhall.live",
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
+    url: `${SITE_URL}/`,
     siteName: "Wonderhall",
     locale: "en_US",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Wonderhall",
-    description:
-      "A live music night at Network School. Next show: Wonderhall III, Sunday 23 August 2026.",
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
     creator: "@adamtpang",
   },
   robots: {

@@ -2,7 +2,7 @@
 // Run: node scripts/process-gallery.mjs
 
 import { readdir, mkdir, writeFile } from "node:fs/promises";
-import { join, extname } from "node:path";
+import { join } from "node:path";
 import sharp from "sharp";
 
 const SRC = "C:/Users/adamp/OneDrive/Desktop/wonderhall-photos";

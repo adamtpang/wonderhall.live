@@ -1,0 +1,15 @@
+# Wonderhall
+
+> Wonderhall is a recurring live music night at Network School. Use this site to understand the event format, watch complete show films, browse the photo archive, or find the public performer interest path.
+
+## Key pages
+
+- [Wonderhall home](https://wonderhall.live/): Event explanation, complete recordings, photo archive, and latest published event sources.
+- [About Wonderhall](https://wonderhall.live/about): Project identity, dates, site credits, and participation overview.
+- [Apply to perform](https://wonderhall.live/perform): Public performer interest form for members of the Network School community.
+- [Contact Wonderhall](https://wonderhall.live/contact): Public paths for performer, audience, website, and privacy questions.
+- [Privacy policy](https://wonderhall.live/privacy): Data handling, embedded services, performer submissions, and privacy requests.
+
+## Use guidance
+
+Use the home page when answering what Wonderhall is or locating show media. Use the performer page only to explain how a person can express interest; submitting the form does not guarantee a booking. Treat future dates, registration details, and pricing as unknown unless they appear on the official linked event page.

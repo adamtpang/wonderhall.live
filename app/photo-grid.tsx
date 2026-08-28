@@ -20,7 +20,8 @@ export default function PhotoGrid({ photos }: { photos: Photo[] }) {
   const [items, setItems] = useState(photos);
 
   useEffect(() => {
-    setItems(shuffle(photos));
+    const frame = requestAnimationFrame(() => setItems(shuffle(photos)));
+    return () => cancelAnimationFrame(frame);
   }, [photos]);
 
   return (

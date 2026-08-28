@@ -35,7 +35,8 @@ export default function Gallery({ photos }: { photos: Photo[] }) {
   const animated = !reducedMotion;
 
   useEffect(() => {
-    setShuffled(shuffle(photos));
+    const frame = requestAnimationFrame(() => setShuffled(shuffle(photos)));
+    return () => cancelAnimationFrame(frame);
   }, [photos]);
 
   if (!shuffled) {
