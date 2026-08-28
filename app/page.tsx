@@ -80,16 +80,10 @@ export default function Home() {
         </div>
       </section>
 
-      {/* PURPOSE — substantive server-rendered copy and the primary action. */}
-      <section className="w-full px-4 sm:px-6 pb-16 sm:pb-24" aria-labelledby="what-is-wonderhall">
+      {/* PRIMARY ACTIONS — keep the homepage invitation deliberately concise. */}
+      <section className="w-full px-4 sm:px-6 pb-16 sm:pb-24" aria-label="Wonderhall actions">
         <div className="w-full max-w-3xl mx-auto text-center">
-          <h2 id="what-is-wonderhall" className="wh-h2">One room. One live set.</h2>
-          <div className="mt-8 space-y-5 text-left sm:text-center">
-            {HOME_PASSAGES.introduction.map((passage) => (
-              <p key={passage} className="wh-lead">{passage}</p>
-            ))}
-          </div>
-          <div className="mt-10 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center">
+          <div className="flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center">
             <a href="/perform" className="wh-btn">Apply to perform</a>
             <a href="#archive" className="wh-btn wh-btn--ghost">Watch past shows</a>
           </div>
@@ -104,55 +98,82 @@ export default function Home() {
         <Gallery photos={gallery} />
       </section>
 
-      {/* OFFER — the audience and performer paths, stated without invented pricing. */}
-      <section className="w-full px-4 sm:px-6 pb-16 sm:pb-24" aria-labelledby="take-part">
-        <Reveal>
-          <div className="w-full max-w-5xl mx-auto">
-            <div className="wh-rule mb-10" />
-            <h2 id="take-part" className="wh-h2">Take part</h2>
-            <div className="mt-10 grid gap-10 md:grid-cols-2">
-              <div>
-                <h3 className="wh-h3">For performers</h3>
-                <div className="mt-5 space-y-5">
-                  {HOME_PASSAGES.performers.map((passage) => (
-                    <p key={passage} className="wh-body">{passage}</p>
-                  ))}
-                </div>
-                <a href="/perform" className="wh-link mt-6 inline-block">Apply through the performer form</a>
+      {/* Full context stays in the HTML and is available to people on demand. */}
+      <section className="w-full px-4 sm:px-6 pb-16 sm:pb-24">
+        <div className="w-full max-w-5xl mx-auto">
+          <details className="wh-details">
+            <summary>Wonderhall details</summary>
+            <div className="wh-details-content">
+              <h2 className="wh-h2">About Wonderhall</h2>
+              <div className="mt-6 max-w-3xl space-y-5">
+                {HOME_PASSAGES.introduction.map((passage) => (
+                  <p key={passage} className="wh-body">{passage}</p>
+                ))}
               </div>
-              <div>
-                <h3 className="wh-h3">For the audience</h3>
-                <div className="mt-5 space-y-5">
-                  {HOME_PASSAGES.audience.map((passage) => (
-                    <p key={passage} className="wh-body">{passage}</p>
-                  ))}
+
+              <div className="mt-12 grid gap-10 md:grid-cols-2">
+                <div>
+                  <h3 className="wh-h3">For performers</h3>
+                  <div className="mt-5 space-y-5">
+                    {HOME_PASSAGES.performers.map((passage) => (
+                      <p key={passage} className="wh-body">{passage}</p>
+                    ))}
+                  </div>
+                  <a href="/perform" className="wh-link mt-6 inline-block">Apply through the performer form</a>
                 </div>
-                <a
-                  href={`https://luma.com/${LUMA_EVENT_ID}`}
-                  className="wh-link mt-6 inline-block"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  View the official Luma event page
-                </a>
+                <div>
+                  <h3 className="wh-h3">For the audience</h3>
+                  <div className="mt-5 space-y-5">
+                    {HOME_PASSAGES.audience.map((passage) => (
+                      <p key={passage} className="wh-body">{passage}</p>
+                    ))}
+                  </div>
+                  <a
+                    href={`https://luma.com/${LUMA_EVENT_ID}`}
+                    className="wh-link mt-6 inline-block"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    View the official Luma event page
+                  </a>
+                </div>
+              </div>
+
+              <div className="mt-12 grid gap-10 md:grid-cols-2">
+                <div>
+                  <h3 className="wh-h3">Archive notes</h3>
+                  <div className="mt-5 space-y-5">
+                    {HOME_PASSAGES.archive.map((passage) => (
+                      <p key={passage} className="wh-body">{passage}</p>
+                    ))}
+                  </div>
+                </div>
+                <div>
+                  <h3 className="wh-h3">Practical information</h3>
+                  <div className="mt-5 space-y-5">
+                    {HOME_PASSAGES.practical.map((passage) => (
+                      <p key={passage} className="wh-body">{passage}</p>
+                    ))}
+                  </div>
+                  <nav aria-label="Wonderhall information" className="mt-6 flex flex-wrap gap-x-6 gap-y-3">
+                    <a href="/about" className="wh-link">About Wonderhall</a>
+                    <a href="/contact" className="wh-link">Contact Wonderhall</a>
+                    <a href="/privacy" className="wh-link">Privacy policy</a>
+                  </nav>
+                </div>
               </div>
             </div>
-          </div>
-        </Reveal>
+          </details>
+        </div>
       </section>
 
-      {/* SHOWS — explanatory archive followed by complete recordings. */}
+      {/* SHOWS — complete recordings. */}
       <section id="archive" className="scroll-mt-8" aria-labelledby="archive-title">
         <div className="w-full px-4 sm:px-6 pb-12">
           <Reveal>
             <div className="w-full max-w-5xl mx-auto">
               <div className="wh-rule mb-10" />
               <h2 id="archive-title" className="wh-h2">Full show archive</h2>
-              <div className="mt-6 max-w-3xl space-y-5">
-                {HOME_PASSAGES.archive.map((passage) => (
-                  <p key={passage} className="wh-body">{passage}</p>
-                ))}
-              </div>
             </div>
           </Reveal>
         </div>
@@ -219,24 +240,6 @@ export default function Home() {
                 />
               </div>
             </div>
-          </div>
-        </Reveal>
-      </section>
-
-      <section className="w-full px-4 sm:px-6 pb-16 sm:pb-24" aria-labelledby="practical-information">
-        <Reveal>
-          <div className="w-full max-w-3xl mx-auto">
-            <h2 id="practical-information" className="wh-h2">Practical information</h2>
-            <div className="mt-6 space-y-5">
-              {HOME_PASSAGES.practical.map((passage) => (
-                <p key={passage} className="wh-body">{passage}</p>
-              ))}
-            </div>
-            <nav aria-label="Wonderhall information" className="mt-8 flex flex-wrap gap-x-6 gap-y-3">
-              <a href="/about" className="wh-link">About Wonderhall</a>
-              <a href="/contact" className="wh-link">Contact Wonderhall</a>
-              <a href="/privacy" className="wh-link">Privacy policy</a>
-            </nav>
           </div>
         </Reveal>
       </section>

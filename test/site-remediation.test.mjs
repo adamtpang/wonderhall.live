@@ -24,6 +24,19 @@ test("homepage copy meets the measured content thresholds", () => {
   assert.ok(chunkable.length / passages.length >= 0.35);
 });
 
+test("substantive homepage copy uses a native, human-accessible disclosure", async () => {
+  const root = fileURLToPath(new URL("..", import.meta.url));
+  const [source, styles] = await Promise.all([
+    readFile(`${root}/app/page.tsx`, "utf8"),
+    readFile(`${root}/app/globals.css`, "utf8"),
+  ]);
+
+  assert.match(source, /<details className="wh-details">/);
+  assert.match(source, /<summary>Wonderhall details<\/summary>/);
+  assert.match(styles, /\.wh-details:not\(\[open\]\) > \.wh-details-content\s*{\s*display: none;/);
+  assert.doesNotMatch(source, /(?:hidden|sr-only)[^\n]*HOME_PASSAGES|HOME_PASSAGES[^\n]*(?:hidden|sr-only)/);
+});
+
 test("metadata and JSON-LD expose canonical identity without unsupported fields", () => {
   assert.ok(SITE_TITLE.length >= 20 && SITE_TITLE.length <= 65);
   assert.ok(SITE_DESCRIPTION.length >= 70 && SITE_DESCRIPTION.length <= 170);
