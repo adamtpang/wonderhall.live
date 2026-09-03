@@ -43,6 +43,9 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
+# Generated agent handoffs may contain private conversation history.
+*_CONTINUE_FROM_*.md
+
 .vercel
 
 # Claude Code worktrees (may contain API keys in settings.local.json)
